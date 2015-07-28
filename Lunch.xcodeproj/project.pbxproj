@@ -1,0 +1,430 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EC4FFF2E1B66FF870089D1CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF2D1B66FF870089D1CA /* AppDelegate.swift */; };
+		EC4FFF301B66FF870089D1CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF2F1B66FF870089D1CA /* ViewController.swift */; };
+		EC4FFF331B66FF870089D1CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC4FFF311B66FF870089D1CA /* Main.storyboard */; };
+		EC4FFF351B66FF870089D1CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4FFF341B66FF870089D1CA /* Images.xcassets */; };
+		EC4FFF381B66FF870089D1CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FFF361B66FF870089D1CA /* LaunchScreen.xib */; };
+		EC4FFF441B66FF870089D1CA /* LunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF431B66FF870089D1CA /* LunchTests.swift */; };
+		EC4FFF501B6702CA0089D1CA /* TodaysLunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF4F1B6702CA0089D1CA /* TodaysLunchViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EC4FFF3E1B66FF870089D1CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC4FFF201B66FF870089D1CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC4FFF271B66FF870089D1CA;
+			remoteInfo = Lunch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EC4FFF281B66FF870089D1CA /* Lunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC4FFF2C1B66FF870089D1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC4FFF2D1B66FF870089D1CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EC4FFF2F1B66FF870089D1CA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EC4FFF321B66FF870089D1CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EC4FFF341B66FF870089D1CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EC4FFF371B66FF870089D1CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		EC4FFF3D1B66FF870089D1CA /* LunchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC4FFF421B66FF870089D1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC4FFF431B66FF870089D1CA /* LunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchTests.swift; sourceTree = "<group>"; };
+		EC4FFF4F1B6702CA0089D1CA /* TodaysLunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodaysLunchViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC4FFF251B66FF870089D1CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC4FFF3A1B66FF870089D1CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC4FFF1F1B66FF870089D1CA = {
+			isa = PBXGroup;
+			children = (
+				EC4FFF2A1B66FF870089D1CA /* Lunch */,
+				EC4FFF401B66FF870089D1CA /* LunchTests */,
+				EC4FFF291B66FF870089D1CA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EC4FFF291B66FF870089D1CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC4FFF281B66FF870089D1CA /* Lunch.app */,
+				EC4FFF3D1B66FF870089D1CA /* LunchTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC4FFF2A1B66FF870089D1CA /* Lunch */ = {
+			isa = PBXGroup;
+			children = (
+				EC4FFF2D1B66FF870089D1CA /* AppDelegate.swift */,
+				EC4FFF2F1B66FF870089D1CA /* ViewController.swift */,
+				EC4FFF311B66FF870089D1CA /* Main.storyboard */,
+				EC4FFF341B66FF870089D1CA /* Images.xcassets */,
+				EC4FFF361B66FF870089D1CA /* LaunchScreen.xib */,
+				EC4FFF2B1B66FF870089D1CA /* Supporting Files */,
+				EC4FFF4F1B6702CA0089D1CA /* TodaysLunchViewController.swift */,
+			);
+			path = Lunch;
+			sourceTree = "<group>";
+		};
+		EC4FFF2B1B66FF870089D1CA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC4FFF2C1B66FF870089D1CA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC4FFF401B66FF870089D1CA /* LunchTests */ = {
+			isa = PBXGroup;
+			children = (
+				EC4FFF431B66FF870089D1CA /* LunchTests.swift */,
+				EC4FFF411B66FF870089D1CA /* Supporting Files */,
+			);
+			path = LunchTests;
+			sourceTree = "<group>";
+		};
+		EC4FFF411B66FF870089D1CA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC4FFF421B66FF870089D1CA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC4FFF271B66FF870089D1CA /* Lunch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC4FFF471B66FF870089D1CA /* Build configuration list for PBXNativeTarget "Lunch" */;
+			buildPhases = (
+				EC4FFF241B66FF870089D1CA /* Sources */,
+				EC4FFF251B66FF870089D1CA /* Frameworks */,
+				EC4FFF261B66FF870089D1CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Lunch;
+			productName = Lunch;
+			productReference = EC4FFF281B66FF870089D1CA /* Lunch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EC4FFF3C1B66FF870089D1CA /* LunchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC4FFF4A1B66FF870089D1CA /* Build configuration list for PBXNativeTarget "LunchTests" */;
+			buildPhases = (
+				EC4FFF391B66FF870089D1CA /* Sources */,
+				EC4FFF3A1B66FF870089D1CA /* Frameworks */,
+				EC4FFF3B1B66FF870089D1CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC4FFF3F1B66FF870089D1CA /* PBXTargetDependency */,
+			);
+			name = LunchTests;
+			productName = LunchTests;
+			productReference = EC4FFF3D1B66FF870089D1CA /* LunchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC4FFF201B66FF870089D1CA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Spencer Amann";
+				TargetAttributes = {
+					EC4FFF271B66FF870089D1CA = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					EC4FFF3C1B66FF870089D1CA = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = EC4FFF271B66FF870089D1CA;
+					};
+				};
+			};
+			buildConfigurationList = EC4FFF231B66FF870089D1CA /* Build configuration list for PBXProject "Lunch" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EC4FFF1F1B66FF870089D1CA;
+			productRefGroup = EC4FFF291B66FF870089D1CA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC4FFF271B66FF870089D1CA /* Lunch */,
+				EC4FFF3C1B66FF870089D1CA /* LunchTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC4FFF261B66FF870089D1CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC4FFF331B66FF870089D1CA /* Main.storyboard in Resources */,
+				EC4FFF381B66FF870089D1CA /* LaunchScreen.xib in Resources */,
+				EC4FFF351B66FF870089D1CA /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC4FFF3B1B66FF870089D1CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC4FFF241B66FF870089D1CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC4FFF501B6702CA0089D1CA /* TodaysLunchViewController.swift in Sources */,
+				EC4FFF301B66FF870089D1CA /* ViewController.swift in Sources */,
+				EC4FFF2E1B66FF870089D1CA /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC4FFF391B66FF870089D1CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC4FFF441B66FF870089D1CA /* LunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EC4FFF3F1B66FF870089D1CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC4FFF271B66FF870089D1CA /* Lunch */;
+			targetProxy = EC4FFF3E1B66FF870089D1CA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EC4FFF311B66FF870089D1CA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC4FFF321B66FF870089D1CA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EC4FFF361B66FF870089D1CA /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC4FFF371B66FF870089D1CA /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EC4FFF451B66FF870089D1CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EC4FFF461B66FF870089D1CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EC4FFF481B66FF870089D1CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Lunch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EC4FFF491B66FF870089D1CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Lunch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		EC4FFF4B1B66FF870089D1CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LunchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lunch.app/Lunch";
+			};
+			name = Debug;
+		};
+		EC4FFF4C1B66FF870089D1CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LunchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lunch.app/Lunch";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC4FFF231B66FF870089D1CA /* Build configuration list for PBXProject "Lunch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC4FFF451B66FF870089D1CA /* Debug */,
+				EC4FFF461B66FF870089D1CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC4FFF471B66FF870089D1CA /* Build configuration list for PBXNativeTarget "Lunch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC4FFF481B66FF870089D1CA /* Debug */,
+				EC4FFF491B66FF870089D1CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EC4FFF4A1B66FF870089D1CA /* Build configuration list for PBXNativeTarget "LunchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC4FFF4B1B66FF870089D1CA /* Debug */,
+				EC4FFF4C1B66FF870089D1CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC4FFF201B66FF870089D1CA /* Project object */;
+}
