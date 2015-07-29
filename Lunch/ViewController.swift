@@ -61,6 +61,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         lunchTableView.beginUpdates()
         self.lunchTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
         lunchTableView.endUpdates()
+        self.lunchTextField.text = ""
     }
 }
 
