@@ -415,6 +415,7 @@
 				EC4FFF491B66FF870089D1CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EC4FFF4A1B66FF870089D1CA /* Build configuration list for PBXNativeTarget "LunchTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +424,7 @@
 				EC4FFF4C1B66FF870089D1CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
