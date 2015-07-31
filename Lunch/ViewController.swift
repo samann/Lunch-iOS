@@ -100,4 +100,43 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.lunchTableView.reloadSections(indexSet, withRowAnimation: .Fade)
         self.lunchTableView.endUpdates()
     }
+
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
+            var query = PFQuery(className: "Eateries")
+            query.whereKeyExists("place")
+            query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) -> Void in
+                var pfobjects = objects as! [PFObject]
+                for object in pfobjects {
+                    var place = object["place"] as! String
+                    var placeIndex = index.row
+                    if index.row == self.items.count {
+                        placeIndex--
+                    }
+                    if place == self.items[placeIndex] {
+                        pfobjects[placeIndex].deleteInBackground()
+                        self.items.removeAtIndex(placeIndex)
+                    }
+                }
+            })
+            self.updateTableView()
+
+        }
+        delete.backgroundColor = UIColor.redColor()
+
+        let vote = UITableViewRowAction(style: .Normal, title: "Vote") { action, index in
+            println("vote button tapped")
+        }
+        vote.backgroundColor = UIColor.blueColor()
+        return [vote, delete]
+    }
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // the cells you would like the actions to appear needs to be editable
+        return true
+    }
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        // you need to implement this method too or you can't swipe to display the actions
+    }
 }
