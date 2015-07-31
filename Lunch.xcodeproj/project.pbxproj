@@ -25,6 +25,7 @@
 		EC8C8F361B6AF10E00227ECC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F351B6AF10E00227ECC /* Security.framework */; };
 		EC8C8F381B6AF11700227ECC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F371B6AF11700227ECC /* SystemConfiguration.framework */; };
 		EC8C8F3A1B6AF12000227ECC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F391B6AF12000227ECC /* libsqlite3.dylib */; };
+		EC8C8F3D1B6AF42300227ECC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F3C1B6AF42300227ECC /* Bolts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		EC8C8F351B6AF10E00227ECC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EC8C8F371B6AF11700227ECC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EC8C8F391B6AF12000227ECC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		EC8C8F3C1B6AF42300227ECC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				EC8C8F3A1B6AF12000227ECC /* libsqlite3.dylib in Frameworks */,
 				EC8C8F381B6AF11700227ECC /* SystemConfiguration.framework in Frameworks */,
 				EC8C8F361B6AF10E00227ECC /* Security.framework in Frameworks */,
+				EC8C8F3D1B6AF42300227ECC /* Bolts.framework in Frameworks */,
 				EC8C8F341B6AF10700227ECC /* CFNetwork.framework in Frameworks */,
 				EC8C8F321B6AF0FF00227ECC /* AudioToolbox.framework in Frameworks */,
 				EC8C8F301B6AF0E200227ECC /* libz.1.1.3.dylib in Frameworks */,
@@ -152,6 +155,7 @@
 		EC8C8F3B1B6AF15B00227ECC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC8C8F3C1B6AF42300227ECC /* Bolts.framework */,
 				EC8C8F391B6AF12000227ECC /* libsqlite3.dylib */,
 				EC8C8F251B6AF07600227ECC /* Parse.framework */,
 				EC8C8F371B6AF11700227ECC /* SystemConfiguration.framework */,
