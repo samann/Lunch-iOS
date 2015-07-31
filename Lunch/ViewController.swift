@@ -20,16 +20,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return refreshControl
     }()
 
-    var lunchChoice: Int!
-    var items: [String] = []
+    var eateries: [String] = []
+    var votes: [Int] = []
+
     let lunchItemCellIdentifier = "LunchItemCell"
     let emptyString = ""
+
+    let classNameKey = "Eateries"
+    let placeColumnKey = "place"
+    let voteColumnKey = "vote"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.lunchTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: lunchItemCellIdentifier)
         self.lunchTextField.delegate = self
-        if items.isEmpty {
+        if eateries.isEmpty {
             retrievePlaces()
             updateTableView()
         }
@@ -47,15 +52,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count
+        return self.eateries.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell = self.lunchTableView.dequeueReusableCellWithIdentifier(lunchItemCellIdentifier) as! UITableViewCell
+        var cell: UITableViewCell? = self.lunchTableView.dequeueReusableCellWithIdentifier(lunchItemCellIdentifier) as? UITableViewCell
+        if cell != nil {
+            cell! = UITableViewCell(style: .Subtitle, reuseIdentifier: lunchItemCellIdentifier)
+        }
+        cell!.textLabel?.text = self.eateries[indexPath.row]
+        cell!.detailTextLabel?.text = "Votes: \(self.votes[indexPath.row])"
 
-        cell.textLabel?.text = self.items[indexPath.row]
-
-        return cell
+        return cell!
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -71,13 +79,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func textFieldDidEndEditing(textField: UITextField) {
         let place = self.lunchTextField.text
-        items.append(place)
-        let testObject = PFObject(className: "Eateries")
-        testObject["place"] = place
+        let vote = 0
+        eateries.append(place)
+        votes.append(vote)
+        let testObject = PFObject(className: classNameKey)
+        testObject[placeColumnKey] = place
+        testObject[voteColumnKey] = vote
         testObject.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if success {
-                println("Place \(place) has been saved")
+                println("Place \(place) has been saved with \(vote) votes")
             }
         }
         updateTableView()
@@ -85,14 +96,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func retrievePlaces() {
-        var query = PFQuery(className: "Eateries")
-        query.whereKeyExists("place")
+        var query = PFQuery(className: classNameKey)
+        query.whereKeyExists(placeColumnKey)
         query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
             if error == nil {
                 var pfobjects = objects as! [PFObject]
                 for object in pfobjects {
-                    var place = object["place"] as! String
-                    self.items.append(place)
+                    var place = object[self.placeColumnKey] as! String
+                    var vote = object[self.voteColumnKey] as! Int
+                    self.eateries.append(place)
+                    self.votes.append(vote)
                     self.updateTableView()
                 }
             } else {
@@ -148,7 +161,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func handleRefresh(refreshControl: UIRefreshControl) {
-        self.items.removeAll(keepCapacity: true)
+        self.eateries.removeAll(keepCapacity: true)
         retrievePlaces()
 
         refreshControl.endRefreshing()
