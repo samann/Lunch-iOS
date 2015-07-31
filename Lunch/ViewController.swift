@@ -14,6 +14,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var lunchTableView: UITableView!
     @IBOutlet weak var lunchTextField: UITextField!
 
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: .ValueChanged)
+        return refreshControl
+    }()
+
     var lunchChoice: Int!
     var items: [String] = []
     let lunchItemCellIdentifier = "LunchItemCell"
@@ -27,6 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             retrievePlaces()
             updateTableView()
         }
+        self.lunchTableView.addSubview(self.refreshControl)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -111,7 +118,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     var place = object["place"] as! String
                     var placeIndex = index.row
                     if index.row == self.items.count {
-                        placeIndex--
+                        --placeIndex
                     }
                     if place == self.items[placeIndex] {
                         pfobjects[placeIndex].deleteInBackground()
@@ -138,5 +145,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         // you need to implement this method too or you can't swipe to display the actions
+    }
+
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        self.items.removeAll(keepCapacity: true)
+        retrievePlaces()
+
+        refreshControl.endRefreshing()
     }
 }
