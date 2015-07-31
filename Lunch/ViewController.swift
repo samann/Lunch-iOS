@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
@@ -58,8 +59,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func textFieldDidEndEditing(textField: UITextField) {
-        items.append(self.lunchTextField.text)
+        let place = self.lunchTextField.text
+        items.append(place)
         var indexSet = NSIndexSet(index: 0)
+        let testObject = PFObject(className: "Eateries")
+        testObject["place"] = place
+        testObject.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError?) -> Void in
+            println("Place \(place) has been saved")
+        }
         lunchTableView.beginUpdates()
         self.lunchTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
         lunchTableView.endUpdates()
