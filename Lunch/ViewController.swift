@@ -66,7 +66,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         testObject["place"] = place
         testObject.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
-            println("Place \(place) has been saved")
+            if success {
+                println("Place \(place) has been saved")
+            }
         }
         lunchTableView.beginUpdates()
         self.lunchTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
