@@ -49,7 +49,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="oL5-r8-2U8" kind="show" id="qwB-OX-Fih"/>
+                                            <segue destination="oL5-r8-2U8" kind="show" identifier="LunchDetailSegue" id="pfr-Ce-3pF"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -81,10 +81,10 @@
             </objects>
             <point key="canvasLocation" x="1048" y="444"/>
         </scene>
-        <!--View Controller-->
+        <!--Todays Lunch View Controller-->
         <scene sceneID="yKD-PT-iiH">
             <objects>
-                <viewController id="oL5-r8-2U8" sceneMemberID="viewController">
+                <viewController id="oL5-r8-2U8" customClass="TodaysLunchViewController" customModule="Lunch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0gc-kn-gQG"/>
                         <viewControllerLayoutGuide type="bottom" id="NtT-Kh-vb1"/>
@@ -92,8 +92,39 @@
                     <view key="view" contentMode="scaleToFill" id="Bvw-TS-7hn">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVR-VM-g4x">
+                                <rect key="frame" x="266" y="72" width="67" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W67-AV-Oei">
+                                <rect key="frame" x="279" y="113" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="W67-AV-Oei" secondAttribute="centerX" id="2CA-sS-Q5I"/>
+                            <constraint firstItem="W67-AV-Oei" firstAttribute="top" secondItem="mVR-VM-g4x" secondAttribute="bottom" constant="7.5" id="CYE-pX-0Fk"/>
+                            <constraint firstAttribute="centerX" secondItem="mVR-VM-g4x" secondAttribute="centerX" id="mjb-cE-0Dd"/>
+                            <constraint firstItem="mVR-VM-g4x" firstAttribute="top" secondItem="0gc-kn-gQG" secondAttribute="bottom" constant="8" id="zCd-vm-ZRY"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="eqO-4R-TMl">
+                        <barButtonItem key="rightBarButtonItem" title="Vote" id="WTZ-J8-8rE">
+                            <connections>
+                                <action selector="voteNavBarButtonClick:" destination="oL5-r8-2U8" id="xba-mO-VVI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="selectedPlaceLabel" destination="mVR-VM-g4x" id="5cu-Bt-65B"/>
+                        <outlet property="selectedVotesLabel" destination="W67-AV-Oei" id="44o-oj-iEa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWP-oS-RJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

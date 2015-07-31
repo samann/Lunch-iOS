@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var eateries: [String] = []
     var votes: [Int] = []
 
+    let lunchDetailSegueIdentifier = "LunchDetailSegue"
     let lunchItemCellIdentifier = "LunchItemCell"
     let emptyString = ""
 
@@ -48,7 +49,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        if let detailView = segue.destinationViewController as? TodaysLunchViewController {
+            if let eateryIndex = lunchTableView.indexPathForSelectedRow()?.row {
+                detailView.textForLunchLabel = eateries[eateryIndex]
+                detailView.textForVotesLabel = "\(votes[eateryIndex])"
+            }
+
+        }
+
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,7 +75,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // TODO: add stuff here man
+        self.performSegueWithIdentifier(lunchDetailSegueIdentifier, sender: lunchTableView)
     }
 
     // MARK: UITextFieldDelegate
@@ -179,6 +187,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func handleRefresh(refreshControl: UIRefreshControl) {
         self.eateries.removeAll(keepCapacity: true)
+        self.votes.removeAll(keepCapacity: true)
         retrievePlaces()
 
         refreshControl.endRefreshing()
