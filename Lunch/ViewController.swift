@@ -15,10 +15,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     var lunchChoice: Int!
     var items: [String] = []
+    let lunchItemCellIdentifier = "LunchItemCell"
+    let emptyString = ""
 
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-        self.lunchTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "LunchItemCell")
+        self.lunchTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: lunchItemCellIdentifier)
         self.lunchTextField.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -37,7 +39,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.lunchTableView.dequeueReusableCellWithIdentifier("LunchItemCell") as! UITableViewCell
+        var cell: UITableViewCell = self.lunchTableView.dequeueReusableCellWithIdentifier(lunchItemCellIdentifier) as! UITableViewCell
 
         cell.textLabel?.text = self.items[indexPath.row]
 
@@ -57,11 +59,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func textFieldDidEndEditing(textField: UITextField) {
         items.append(self.lunchTextField.text)
-        var indexSet: NSIndexSet = NSIndexSet(index: 0)
+        var indexSet = NSIndexSet(index: 0)
         lunchTableView.beginUpdates()
         self.lunchTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
         lunchTableView.endUpdates()
-        self.lunchTextField.text = ""
+        self.lunchTextField.text = emptyString
     }
 }
 
