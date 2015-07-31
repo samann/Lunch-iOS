@@ -23,6 +23,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         self.lunchTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: lunchItemCellIdentifier)
         self.lunchTextField.delegate = self
+        if items.isEmpty {
+            retrievePlaces()
+            updateTableView()
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -61,7 +65,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func textFieldDidEndEditing(textField: UITextField) {
         let place = self.lunchTextField.text
         items.append(place)
-        var indexSet = NSIndexSet(index: 0)
         let testObject = PFObject(className: "Eateries")
         testObject["place"] = place
         testObject.saveInBackgroundWithBlock {
@@ -70,10 +73,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 println("Place \(place) has been saved")
             }
         }
-        lunchTableView.beginUpdates()
-        self.lunchTableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
-        lunchTableView.endUpdates()
+        updateTableView()
         self.lunchTextField.text = emptyString
     }
-}
 
+    func retrievePlaces() {
+        var query = PFQuery(className: "Eateries")
+        query.whereKeyExists("place")
+        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
+            if error == nil {
+                var pfobjects = objects as! [PFObject]
+                for object in pfobjects {
+                    var place = object["place"] as! String
+                    self.items.append(place)
+                    self.updateTableView()
+                }
+            } else {
+                println("Error: \(error!)")
+            }
+        }
+    }
+
+    func updateTableView() {
+        var indexSet = NSIndexSet(index: 0)
+        self.lunchTableView.beginUpdates()
+        self.lunchTableView.reloadSections(indexSet, withRowAnimation: .Fade)
+        self.lunchTableView.endUpdates()
+    }
+}
