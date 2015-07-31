@@ -123,29 +123,46 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
         let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
-            var query = PFQuery(className: "Eateries")
-            query.whereKeyExists("place")
+            var query = PFQuery(className: self.classNameKey)
+            query.whereKeyExists(self.placeColumnKey)
             query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) -> Void in
                 var pfobjects = objects as! [PFObject]
                 for object in pfobjects {
-                    var place = object["place"] as! String
-                    var placeIndex = index.row
-                    if index.row == self.items.count {
-                        --placeIndex
-                    }
-                    if place == self.items[placeIndex] {
-                        pfobjects[placeIndex].deleteInBackground()
-                        self.items.removeAtIndex(placeIndex)
+                    var place = object[self.placeColumnKey] as! String
+                    if place == self.eateries[index.row] {
+                        pfobjects[index.row].deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                            if error == nil {
+                                self.eateries.removeAtIndex(index.row)
+                                println("Place \(place) has been removed at index \(index.row)")
+                                self.updateTableView()
+                            }
+                        })
                     }
                 }
             })
-            self.updateTableView()
+
 
         }
         delete.backgroundColor = UIColor.redColor()
 
         let vote = UITableViewRowAction(style: .Normal, title: "Vote") { action, index in
-            println("vote button tapped")
+            var query = PFQuery(className: self.classNameKey)
+            query.whereKeyExists(self.placeColumnKey)
+            query.whereKeyExists(self.voteColumnKey)
+            query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) -> Void in
+                var pfobjects = objects as! [PFObject]
+                for object in pfobjects {
+                    var place = object[self.placeColumnKey] as! String
+                    if place == self.eateries[indexPath.row] {
+                        var voteCount = object[self.voteColumnKey] as! Int
+                        voteCount++
+                        object[self.voteColumnKey] = voteCount
+                        object.saveInBackground()
+                        self.votes[indexPath.row]++
+                        self.updateTableView()
+                    }
+                }
+            })
         }
         vote.backgroundColor = UIColor.blueColor()
         return [vote, delete]
