@@ -22,6 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     var eateries: [String] = []
     var votes: [Int] = []
+    var tableViewSelectedIndex = -1
 
     let lunchDetailSegueIdentifier = "LunchDetailSegue"
     let lunchItemCellIdentifier = "LunchItemCell"
@@ -53,6 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let eateryIndex = lunchTableView.indexPathForSelectedRow()?.row {
                 detailView.textForLunchLabel = eateries[eateryIndex]
                 detailView.textForVotesLabel = "\(votes[eateryIndex])"
+                detailView.selectedIndex = lunchTableView.indexPathForSelectedRow()!.row as Int
             }
 
         }
@@ -75,6 +77,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableViewSelectedIndex = indexPath.row
         self.performSegueWithIdentifier(lunchDetailSegueIdentifier, sender: lunchTableView)
     }
 
@@ -112,9 +115,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 for object in pfobjects {
                     var place = object[self.placeColumnKey] as! String
                     var vote = object[self.voteColumnKey] as! Int
-                    self.eateries.append(place)
-                    self.votes.append(vote)
-                    self.updateTableView()
+                    if !contains(self.eateries, place) {
+                        self.eateries.append(place)
+                        self.votes.append(vote)
+                        self.updateTableView()
+                    }
                 }
             } else {
                 println("Error: \(error!)")
@@ -130,6 +135,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+
+        // DELETE
         let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
             var query = PFQuery(className: self.classNameKey)
             query.whereKeyExists(self.placeColumnKey)
@@ -153,6 +160,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         delete.backgroundColor = UIColor.redColor()
 
+        // VOTE
         let vote = UITableViewRowAction(style: .Normal, title: "Vote") { action, index in
             var query = PFQuery(className: self.classNameKey)
             query.whereKeyExists(self.placeColumnKey)

@@ -16,6 +16,7 @@ class TodaysLunchViewController: UIViewController {
 
     var textForLunchLabel = ""
     var textForVotesLabel = ""
+    var selectedIndex = -1
 
     let classNameKey = "Eateries"
     let placeColumnKey = "place"
@@ -31,9 +32,18 @@ class TodaysLunchViewController: UIViewController {
         selectedVotesLabel.text = "Votes: " + textForVotesLabel
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        let vc = self.navigationController?.topViewController as? ViewController
+        vc?.votes[selectedIndex] = textForVotesLabel.toInt()!
+        vc?.updateTableView()
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+
+
 
     @IBAction func voteNavBarButtonClick(sender: AnyObject) {
         var query = PFQuery(className: self.classNameKey)
