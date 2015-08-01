@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import MapKit
+import GoogleMaps
 
 class TodaysLunchViewController: UIViewController {
 
@@ -19,6 +20,7 @@ class TodaysLunchViewController: UIViewController {
     var textForLunchLabel = ""
     var textForVotesLabel = ""
     var selectedIndex = -1
+    var placesClient: GMSPlacesClient?
 
     let classNameKey = "Eateries"
     let placeColumnKey = "place"
@@ -27,18 +29,27 @@ class TodaysLunchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        placesClient = GMSPlacesClient()
+        placesClient?.currentPlaceWithCallback({ (placeLikelihoodList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
+            if let error = error {
+                println("Pick Place error: \(error.localizedDescription)")
+                return
+            }
 
-        var address = textForLunchLabel
-        var geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(address, completionHandler: {(placemarks: [AnyObject]?, error: NSError!) -> Void in
-            if let placemark = placemarks?[0] as? CLPlacemark {
-                let location = placemark.location
-                let cordinates = placemark.location.coordinate
-                let span = MKCoordinateSpanMake(0.05, 0.05)
-                let region = MKCoordinateRegion(center: cordinates, span: span)
-                self.mapView.setRegion(region, animated: true)
-
-                self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
+            if let placeLicklihoodList = placeLikelihoodList {
+                let place = placeLicklihoodList.likelihoods.first?.place
+                if let place = place {
+                    var name = place.name
+                    var location = place.coordinate
+                    var address = "\n".join(place.formattedAddress.componentsSeparatedByString(", "))
+                    println("name: \(name) address: \(address)")
+                    let span = MKCoordinateSpanMake(0.05, 0.05)
+                    let region = MKCoordinateRegion(center: location, span: span)
+                    self.mapView.setRegion(region, animated: true)
+                    var addressDict: NSDictionary = [0:address]
+                    var placemark = MKPlacemark(coordinate: location, addressDictionary: addressDict as [NSObject : AnyObject])
+                    self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
+                }
             }
         })
     }
