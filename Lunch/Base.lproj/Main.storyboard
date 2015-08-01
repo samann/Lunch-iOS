@@ -151,7 +151,7 @@
         <!--Welcome to Lunch-->
         <scene sceneID="RVf-dS-eFh">
             <objects>
-                <viewController id="mRb-K2-foA" sceneMemberID="viewController">
+                <viewController id="mRb-K2-foA" customClass="LoginViewController" customModule="Lunch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SJ1-Cb-Bw5"/>
                         <viewControllerLayoutGuide type="bottom" id="uoV-IE-pLc"/>
@@ -199,6 +199,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="loginButtonClick:" destination="mRb-K2-foA" eventType="touchUpInside" id="P8J-IU-Zg2"/>
                                     <segue destination="BYZ-38-t0r" kind="show" id="s2n-i6-PXz"/>
                                 </connections>
                             </button>
@@ -238,6 +239,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Welcome to Lunch" id="HJq-Xp-cfh"/>
+                    <connections>
+                        <outlet property="passwordTextField" destination="ulE-U2-Njl" id="TiJ-Tb-usL"/>
+                        <outlet property="userNameTextField" destination="pfR-Lk-oqp" id="3rX-kx-586"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="48m-aV-NK5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -246,7 +251,7 @@
         <!--Create a Lunch Account-->
         <scene sceneID="uwG-W7-hW4">
             <objects>
-                <viewController id="5Ja-w9-2zF" sceneMemberID="viewController">
+                <viewController id="5Ja-w9-2zF" customClass="CreateAccountViewController" customModule="Lunch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0pF-kV-s44"/>
                         <viewControllerLayoutGuide type="bottom" id="bKT-PO-ZeS"/>
@@ -295,9 +300,9 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62V-ht-e8i">
-                                <rect key="frame" x="281" y="363" width="38" height="30"/>
-                                <state key="normal" title="Login">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62V-ht-e8i">
+                                <rect key="frame" x="246" y="363" width="107" height="30"/>
+                                <state key="normal" title="Create Account">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -352,6 +357,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create a Lunch Account" id="dbL-tH-FxI"/>
+                    <connections>
+                        <outlet property="confirmedPasswordTextField" destination="j3Q-Vz-ohs" id="KL3-bm-Bdj"/>
+                        <outlet property="createAccountButtonClick" destination="62V-ht-e8i" id="dKs-uT-KZk"/>
+                        <outlet property="emailTextField" destination="QCl-Ne-rNj" id="i0J-Dt-A9h"/>
+                        <outlet property="passwordTextField" destination="qOz-cG-VWa" id="HF8-uI-62i"/>
+                        <outlet property="userNameTextField" destination="HrP-VE-xAB" id="pe3-FU-zZC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6Q-V2-CUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
