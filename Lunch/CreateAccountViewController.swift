@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class CreateAccountViewController: UIViewController {
 
@@ -19,5 +20,19 @@ class CreateAccountViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    @IBOutlet weak var createAccountButtonClick: UIButton!
+    @IBAction func createAccountButtonClick(sender: AnyObject) {
+        let user = PFUser()
+        user.username = userNameTextField.text ?? "no username"
+        user.password = passwordTextField.text == confirmedPasswordTextField.text ? passwordTextField.text : "dont match"
+        user.email = emailTextField.text ?? "no email"
+
+        // other fields can be set if you want to save more information
+        user["phone"] = "650-555-0000"
+
+        user.signUpInBackgroundWithBlock { (succes: Bool, error:NSError?) -> Void in
+            if error == nil {
+                println("created \(self.userNameTextField.text) with password: \(self.passwordTextField.text)")
+            }
+        }
+    }
 }
