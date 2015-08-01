@@ -100,23 +100,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVR-VM-g4x">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVR-VM-g4x">
                                 <rect key="frame" x="266" y="72" width="67" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W67-AV-Oei">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W67-AV-Oei">
                                 <rect key="frame" x="279" y="113" width="42" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ixs-RZ-Jos">
+                                <rect key="frame" x="16" y="194" width="568" height="386"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="W67-AV-Oei" secondAttribute="centerX" id="2CA-sS-Q5I"/>
                             <constraint firstItem="W67-AV-Oei" firstAttribute="top" secondItem="mVR-VM-g4x" secondAttribute="bottom" constant="7.5" id="CYE-pX-0Fk"/>
+                            <constraint firstAttribute="centerY" secondItem="Ixs-RZ-Jos" secondAttribute="centerY" constant="-87" id="Jzq-yb-9d0"/>
+                            <constraint firstItem="Ixs-RZ-Jos" firstAttribute="leading" secondItem="Bvw-TS-7hn" secondAttribute="leadingMargin" id="VGq-VC-C3u"/>
+                            <constraint firstItem="Ixs-RZ-Jos" firstAttribute="trailing" secondItem="Bvw-TS-7hn" secondAttribute="trailingMargin" id="cl6-Yz-qp3"/>
+                            <constraint firstItem="NtT-Kh-vb1" firstAttribute="top" secondItem="Ixs-RZ-Jos" secondAttribute="bottom" constant="20" id="gqd-kW-DdM"/>
                             <constraint firstAttribute="centerX" secondItem="mVR-VM-g4x" secondAttribute="centerX" id="mjb-cE-0Dd"/>
                             <constraint firstItem="mVR-VM-g4x" firstAttribute="top" secondItem="0gc-kn-gQG" secondAttribute="bottom" constant="8" id="zCd-vm-ZRY"/>
                         </constraints>
@@ -129,6 +136,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="mapView" destination="Ixs-RZ-Jos" id="7qW-S3-p2o"/>
                         <outlet property="selectedPlaceLabel" destination="mVR-VM-g4x" id="5cu-Bt-65B"/>
                         <outlet property="selectedVotesLabel" destination="W67-AV-Oei" id="44o-oj-iEa"/>
                     </connections>
