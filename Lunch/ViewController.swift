@@ -25,6 +25,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var tableViewSelectedIndex = -1
 
     let lunchDetailSegueIdentifier = "LunchDetailSegue"
+    let logoutSegueIdentifier = "logoutSegue"
     let lunchItemCellIdentifier = "LunchItemCell"
     let emptyString = ""
 
@@ -41,6 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             updateTableView()
         }
         self.lunchTableView.addSubview(self.refreshControl)
+        self.navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -200,4 +202,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         refreshControl.endRefreshing()
     }
+
+    @IBAction func logoutButtonClick(sender: AnyObject) {
+        PFUser.logOut()
+        self.performSegueWithIdentifier(logoutSegueIdentifier, sender: self)
+    }
+
 }

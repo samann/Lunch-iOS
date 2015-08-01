@@ -16,23 +16,52 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmedPasswordTextField: UITextField!
 
+    let loginIdentifier = "loginAfterCreateAccount"
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     @IBAction func createAccountButtonClick(sender: AnyObject) {
         let user = PFUser()
-        user.username = userNameTextField.text ?? "no username"
-        user.password = passwordTextField.text == confirmedPasswordTextField.text ? passwordTextField.text : "dont match"
-        user.email = emailTextField.text ?? "no email"
 
-        // other fields can be set if you want to save more information
-        user["phone"] = "650-555-0000"
-
-        user.signUpInBackgroundWithBlock { (succes: Bool, error:NSError?) -> Void in
-            if error == nil {
-                println("created \(self.userNameTextField.text) with password: \(self.passwordTextField.text)")
+        var noErrors = checkkInputForErrors(userNameTextField.text ?? "", password: passwordTextField.text ?? "",
+                                        email: emailTextField.text ?? "", confirmedPassword: confirmedPasswordTextField.text ?? "")
+        if noErrors {
+            user.username = userNameTextField.text
+            user.password = passwordTextField.text
+            user.email = emailTextField.text
+            
+            user.signUpInBackgroundWithBlock { (succes: Bool, error:NSError?) -> Void in
+                if error == nil {
+                    self.performSegueWithIdentifier(self.loginIdentifier, sender: self)
+                } else {
+                    var alert = UIAlertView(title: "Error", message: "There was a problem", delegate: nil, cancelButtonTitle: "Whoops")
+                    alert.show()
+                }
             }
         }
+    }
+
+    func checkkInputForErrors(username: String, password: String, email: String, confirmedPassword: String) -> Bool {
+        var alert = UIAlertView()
+        var noErrors = true
+        if username == "" {
+            alert = UIAlertView(title: "Error", message: "No username", delegate: nil, cancelButtonTitle: "Whoops")
+            noErrors = false
+        } else if email == "" {
+            alert = UIAlertView(title: "Error", message: "No email", delegate: nil, cancelButtonTitle: "Whoops")
+            noErrors = false
+        } else if password != confirmedPassword {
+            alert = UIAlertView(title: "Error", message: "Passwords don't match", delegate: nil, cancelButtonTitle: "Whoops")
+            noErrors = false
+        } else if password == "" {
+            alert = UIAlertView(title: "Error", message: "No password", delegate: nil, cancelButtonTitle: "Whoops")
+            noErrors = false
+        }
+        if !noErrors {
+            alert.show()
+        }
+        return noErrors
     }
 }

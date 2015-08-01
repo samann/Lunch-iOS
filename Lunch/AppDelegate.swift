@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize Parse.
         Parse.setApplicationId("Kx3fR5OjKXYSqV33lycYmsv2kZMUSxdGDq7MXTYx",
             clientKey: "dAAqcZ2xPthp5ZAlRTG1Vj8xg6ibjkMGjryLkQij")
+        PFUser.enableRevocableSessionInBackground()
         return true
     }
 
