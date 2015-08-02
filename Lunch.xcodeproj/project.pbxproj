@@ -15,6 +15,8 @@
 		EC4FFF381B66FF870089D1CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FFF361B66FF870089D1CA /* LaunchScreen.xib */; };
 		EC4FFF441B66FF870089D1CA /* LunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF431B66FF870089D1CA /* LunchTests.swift */; };
 		EC4FFF501B6702CA0089D1CA /* TodaysLunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF4F1B6702CA0089D1CA /* TodaysLunchViewController.swift */; };
+		EC74467E1B6D2031007705B1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC74467D1B6D2031007705B1 /* LoginViewController.swift */; };
+		EC7446801B6D2124007705B1 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC74467F1B6D2124007705B1 /* CreateAccountViewController.swift */; };
 		EC8C8F261B6AF07600227ECC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F251B6AF07600227ECC /* Parse.framework */; };
 		EC8C8F281B6AF0C700227ECC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F271B6AF0C700227ECC /* CoreLocation.framework */; };
 		EC8C8F2A1B6AF0CD00227ECC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F291B6AF0CD00227ECC /* StoreKit.framework */; };
@@ -54,6 +56,8 @@
 		EC4FFF421B66FF870089D1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC4FFF431B66FF870089D1CA /* LunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchTests.swift; sourceTree = "<group>"; };
 		EC4FFF4F1B6702CA0089D1CA /* TodaysLunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodaysLunchViewController.swift; sourceTree = "<group>"; };
+		EC74467D1B6D2031007705B1 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EC74467F1B6D2124007705B1 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		EC8C8F251B6AF07600227ECC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		EC8C8F271B6AF0C700227ECC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EC8C8F291B6AF0CD00227ECC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -138,6 +142,8 @@
 				EC4FFF361B66FF870089D1CA /* LaunchScreen.xib */,
 				EC4FFF2B1B66FF870089D1CA /* Supporting Files */,
 				EC4FFF4F1B6702CA0089D1CA /* TodaysLunchViewController.swift */,
+				EC74467D1B6D2031007705B1 /* LoginViewController.swift */,
+				EC74467F1B6D2124007705B1 /* CreateAccountViewController.swift */,
 			);
 			path = Lunch;
 			sourceTree = "<group>";
@@ -322,6 +328,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC7446801B6D2124007705B1 /* CreateAccountViewController.swift in Sources */,
+				EC74467E1B6D2031007705B1 /* LoginViewController.swift in Sources */,
 				EC4FFF501B6702CA0089D1CA /* TodaysLunchViewController.swift in Sources */,
 				EC4FFF301B66FF870089D1CA /* ViewController.swift in Sources */,
 				EC4FFF2E1B66FF870089D1CA /* AppDelegate.swift in Sources */,
