@@ -44,8 +44,8 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
                 return
             }
 
-            if let placeLicklihoodList = placeLikelihoodList {
-                let place = placeLicklihoodList.likelihoods.first?.place
+            if let placeLikelihoodList = placeLikelihoodList {
+                let place = placeLikelihoodList.likelihoods.first?.place
                 if let place = place {
                     var name = place.name
                     var location = place.coordinate
