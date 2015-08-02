@@ -29,7 +29,7 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
     let classNameKey = "Eateries"
     let placeColumnKey = "place"
     let voteColumnKey = "vote"
-    let image = UIImage(contentsOfFile: "lunch.png")
+    let image = UIImage(named: "PlaceIcon")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +65,6 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
                                 annotation.coordinate = item.placemark.coordinate
                                 annotation.title = item.name
                                 annotation.subtitle = item.phoneNumber
-                                annotation.imageName = "rsz_lunch.png"
                                 annotationList.append(annotation)
                                 self.mapView.addAnnotation(annotation)
                             }
@@ -116,7 +115,7 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
         }
 
         let cpa = annotation as! CustomPointAnnotation
-        anView.image = UIImage(named:cpa.imageName)
+        anView.image = self.image
 
         return anView
     }
