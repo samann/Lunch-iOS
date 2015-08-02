@@ -73,7 +73,7 @@
 		EC8C8F371B6AF11700227ECC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EC8C8F391B6AF12000227ECC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		EC8C8F3C1B6AF42300227ECC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		ECE932E51B6E798F0031788F /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
+		ECE932E51B6E798F0031788F /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Regex.swift; path = ../Regex.swift; sourceTree = "<group>"; };
 		ECF1A0F61B6DD6D2004FB327 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		ECF405DD1B6D649600EC6E30 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		ECF405DF1B6D651500EC6E30 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -125,7 +125,6 @@
 		EC4FFF1F1B66FF870089D1CA = {
 			isa = PBXGroup;
 			children = (
-				ECE932E51B6E798F0031788F /* Regex.swift */,
 				ECF1A0F61B6DD6D2004FB327 /* Keys.plist */,
 				EC8C8F3B1B6AF15B00227ECC /* Frameworks */,
 				EC4FFF2A1B66FF870089D1CA /* Lunch */,
@@ -147,6 +146,7 @@
 		EC4FFF2A1B66FF870089D1CA /* Lunch */ = {
 			isa = PBXGroup;
 			children = (
+				ECE932E51B6E798F0031788F /* Regex.swift */,
 				EC4FFF2D1B66FF870089D1CA /* AppDelegate.swift */,
 				EC4FFF2F1B66FF870089D1CA /* ViewController.swift */,
 				EC4FFF311B66FF870089D1CA /* Main.storyboard */,

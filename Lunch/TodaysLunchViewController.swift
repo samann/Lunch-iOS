@@ -14,17 +14,15 @@ import GoogleMaps
 class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
 
     class CustomPointAnnotation: MKPointAnnotation {
-        var imageName: String!
     }
 
-    @IBOutlet weak var selectedPlaceLabel: UILabel!
     @IBOutlet weak var selectedVotesLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
 
     var textForLunchLabel = ""
     var textForVotesLabel = ""
-    var selectedIndex = -1
-    var placesClient: GMSPlacesClient?
+    var selectedIndex: Int?
+    var placesClient = GMSPlacesClient()
 
     let classNameKey = "Eateries"
     let placeColumnKey = "place"
@@ -33,12 +31,12 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        placesClient = GMSPlacesClient()
+        self.navigationItem.title = textForLunchLabel
 
         self.mapView.zoomEnabled = true
         self.mapView.delegate = self
 
-        placesClient?.currentPlaceWithCallback({ (placeLikelihoodList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
+        placesClient.currentPlaceWithCallback({ (placeLikelihoodList: GMSPlaceLikelihoodList?, error: NSError?) in
             if let error = error {
                 println("Pick Place error: \(error.localizedDescription)")
                 return
@@ -55,7 +53,7 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
                     request.region = MKCoordinateRegion(center: location, span: span)
                     request.naturalLanguageQuery = self.textForLunchLabel
                     var search = MKLocalSearch(request: request)
-                    search.startWithCompletionHandler({ (response: MKLocalSearchResponse!, error: NSError?) -> Void in
+                    search.startWithCompletionHandler({ (response: MKLocalSearchResponse!, error: NSError?) in
                         if response != nil && error == nil {
                             var mapItems = response.mapItems as? [MKMapItem]
                             var annotationList = [MKPointAnnotation]()
@@ -83,14 +81,14 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        selectedPlaceLabel.text = textForLunchLabel
+//        selectedPlaceLabel.text = textForLunchLabel
         selectedVotesLabel.text = "Votes: " + textForVotesLabel
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         let vc = self.navigationController?.topViewController as? ViewController
-        vc?.votes[selectedIndex] = textForVotesLabel.toInt()!
+        vc?.votes[selectedIndex!] = textForVotesLabel.toInt()!
         vc?.updateTableView()
     }
 
@@ -137,7 +135,7 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
         var query = PFQuery(className: self.classNameKey)
         query.whereKeyExists(self.placeColumnKey)
         query.whereKeyExists(self.voteColumnKey)
-        query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) -> Void in
+        query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) in
             var pfobjects = objects as! [PFObject]
             for object in pfobjects {
                 var place = object[self.placeColumnKey] as! String

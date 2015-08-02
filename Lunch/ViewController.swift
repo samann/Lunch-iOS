@@ -55,6 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let detailView = segue.destinationViewController as? TodaysLunchViewController {
             if let eateryIndex = lunchTableView.indexPathForSelectedRow()?.row {
+                detailView.navigationController?.title = eateries[eateryIndex]
                 detailView.textForLunchLabel = eateries[eateryIndex]
                 detailView.textForVotesLabel = "\(votes[eateryIndex])"
                 detailView.selectedIndex = lunchTableView.indexPathForSelectedRow()!.row as Int
@@ -100,7 +101,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         testObject[placeColumnKey] = place
         testObject[voteColumnKey] = vote
         testObject.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError?) -> Void in
+            (success: Bool, error: NSError?) in
             if success {
                 println("Place \(place) has been saved with \(vote) votes")
             }
@@ -134,7 +135,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func retrievePlaces() {
         var query = PFQuery(className: classNameKey)
         query.whereKeyExists(placeColumnKey)
-        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
+        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) in
             if error == nil {
                 var pfobjects = objects as! [PFObject]
                 for object in pfobjects {
@@ -165,12 +166,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
             var query = PFQuery(className: self.classNameKey)
             query.whereKeyExists(self.placeColumnKey)
-            query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) -> Void in
+            query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) in
                 var pfobjects = objects as! [PFObject]
                 for object in pfobjects {
                     var place = object[self.placeColumnKey] as! String
                     if place == self.eateries[index.row] {
-                        pfobjects[index.row].deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                        pfobjects[index.row].deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) in
                             if error == nil {
                                 self.eateries.removeAtIndex(index.row)
                                 println("Place \(place) has been removed at index \(index.row)")
@@ -190,7 +191,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             var query = PFQuery(className: self.classNameKey)
             query.whereKeyExists(self.placeColumnKey)
             query.whereKeyExists(self.voteColumnKey)
-            query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) -> Void in
+            query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) in
                 var pfobjects = objects as! [PFObject]
                 for object in pfobjects {
                     var place = object[self.placeColumnKey] as! String
@@ -230,7 +231,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         PFUser.logOut()
         let currentUser = PFUser.currentUser()
         if currentUser == nil {
-            self.performSegueWithIdentifier(logoutSegueIdentifier, sender: self)
+            self.navigationController?.popToRootViewControllerAnimated(true)
         } else {
             println("Something went wrong logging out with user: \(currentUser)")
         }

@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
 
     let loginIdentifier = "loginWithUsername"
-    let createAccountIdentififer = "createAccount"
+    let createAccountIdentifier = "createAccount"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,30 +24,31 @@ class LoginViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if let currentUser = PFUser.currentUser() {
-            if let username = currentUser.username {
+        if let currentUser = PFUser.currentUser(), username = currentUser.username {
                 self.performSegueWithIdentifier(self.loginIdentifier, sender: self)
-            }
         }
     }
 
     @IBAction func loginButtonClick(sender: AnyObject) {
         if let username = userNameTextField.text, password = passwordTextField.text {
-            PFUser.logInWithUsernameInBackground(username, password: password, block: { (user: PFUser?, error:NSError?) -> Void in
+            PFUser.logInWithUsernameInBackground(username, password: password, block: { (user: PFUser?, error:NSError?) in
                 if user != nil && error == nil {
                     self.performSegueWithIdentifier(self.loginIdentifier, sender: self)
                 } else {
-                    let notPermitted = UIAlertView(title: "Error", message: "Login Failed. \nWhoops!", delegate: nil, cancelButtonTitle: "OK")
-                    notPermitted.show()
+                    let alertView = UIAlertView(title: "Error", message: "Login Failed. \nWhoops!", delegate: nil, cancelButtonTitle: "OK")
+                    alertView.show()
                 }
             })
         }
     }
 
+    @IBAction func createAccountButtonClicked(sender: AnyObject) {
+        self.performSegueWithIdentifier(createAccountIdentifier, sender: self)
+    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == loginIdentifier {
             println("logged in")
-        } else if segue.identifier == createAccountIdentififer {
+        } else if segue.identifier == createAccountIdentifier {
             println("create account")
         }
     }

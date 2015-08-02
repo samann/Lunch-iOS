@@ -20,13 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         Parse.enableLocalDatastore()
-        let filePath = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist")
-        let plist = NSDictionary(contentsOfFile: filePath!)
+        let filePath = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist")!
+        let plist = NSDictionary(contentsOfFile: filePath)!
         // Initialize Parse.
-        Parse.setApplicationId(plist?.valueForKey("ParseAppId") as! String,
-            clientKey: plist?.valueForKey("ParseClientKey") as! String)
+        Parse.setApplicationId(plist.valueForKey("ParseAppId") as! String,
+            clientKey: plist.valueForKey("ParseClientKey") as! String)
         PFUser.enableRevocableSessionInBackground()
-        GMSServices.provideAPIKey(plist?.valueForKey("GoogleMapsKey") as! String)
+        GMSServices.provideAPIKey(plist.valueForKey("GoogleMapsKey") as! String)
         let userNotificationTypes: UIUserNotificationType = (UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound)
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
