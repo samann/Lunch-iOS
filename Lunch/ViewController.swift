@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var eateries: [String] = []
     var votes: [Int] = []
     var tableViewSelectedIndex = -1
+    var votePushSent = false
 
     let lunchDetailSegueIdentifier = "LunchDetailSegue"
     let logoutSegueIdentifier = "logoutSegue"
@@ -106,8 +107,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         updateTableView()
         self.lunchTextField.text = emptyString
+        let time = 60.0
+        let timer = NSTimer.scheduledTimerWithTimeInterval(time, target: self, selector: "startVoting", userInfo: nil,repeats: false)
     }
 
+    func startVoting() {
+        if !votePushSent {
+            votePushSent = true
+            let push = PFInstallation.query()
+            push?.whereKey("deviceType", equalTo: "ios")
+            PFPush.sendPushMessageToQueryInBackground(push
+                , withMessage: "Start voting! \nYou have 30 minutes until voting ends")
+            let time = 30.0 * 60.0
+            let timer = NSTimer.scheduledTimerWithTimeInterval(time, target: self, selector: "stopVoting", userInfo: nil, repeats: false)
+        }
+    }
+
+    func stopVoting() {
+        if votePushSent {
+            let push = PFInstallation.query()
+            push?.whereKey("deviceType", equalTo: "ios")
+            PFPush.sendPushMessageToQueryInBackground(push, withMessage: "Voting has endend! \nThank you for playing Lunch!")
+            votePushSent = false
+        }
+    }
     func retrievePlaces() {
         var query = PFQuery(className: classNameKey)
         query.whereKeyExists(placeColumnKey)
