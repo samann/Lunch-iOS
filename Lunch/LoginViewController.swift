@@ -22,6 +22,15 @@ class LoginViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let currentUser = PFUser.currentUser() {
+            if let username = currentUser.username {
+                self.performSegueWithIdentifier(self.loginIdentifier, sender: self)
+            }
+        }
+    }
+
     @IBAction func loginButtonClick(sender: AnyObject) {
         if let username = userNameTextField.text, password = passwordTextField.text {
             PFUser.logInWithUsernameInBackground(username, password: password, block: { (user: PFUser?, error:NSError?) -> Void in

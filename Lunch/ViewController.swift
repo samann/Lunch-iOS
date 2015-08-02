@@ -205,7 +205,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBAction func logoutButtonClick(sender: AnyObject) {
         PFUser.logOut()
-        self.performSegueWithIdentifier(logoutSegueIdentifier, sender: self)
+        let currentUser = PFUser.currentUser()
+        if currentUser == nil {
+            self.performSegueWithIdentifier(logoutSegueIdentifier, sender: self)
+        } else {
+            println("Something went wrong logging out with user: \(currentUser)")
+        }
     }
 
 }
