@@ -22,8 +22,8 @@ class LoginViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         if let currentUser = PFUser.currentUser() {
             if let username = currentUser.username {
                 self.performSegueWithIdentifier(self.loginIdentifier, sender: self)
