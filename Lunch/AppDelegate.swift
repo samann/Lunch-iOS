@@ -20,12 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         Parse.enableLocalDatastore()
-
+        let filePath = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist")
+        let plist = NSDictionary(contentsOfFile: filePath!)
         // Initialize Parse.
-        Parse.setApplicationId("Kx3fR5OjKXYSqV33lycYmsv2kZMUSxdGDq7MXTYx",
-            clientKey: "dAAqcZ2xPthp5ZAlRTG1Vj8xg6ibjkMGjryLkQij")
+        Parse.setApplicationId(plist?.valueForKey("ParseAppId") as! String,
+            clientKey: plist?.valueForKey("ParseClientKey") as! String)
         PFUser.enableRevocableSessionInBackground()
-        GMSServices.provideAPIKey("AIzaSyDz-f6nnfUY5qoVZkCRL52P5SQcbp0q9iM")
+        GMSServices.provideAPIKey(plist?.valueForKey("GoogleMapsKey") as! String)
         return true
     }
 
