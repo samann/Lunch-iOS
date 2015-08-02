@@ -15,6 +15,8 @@
 		EC4FFF381B66FF870089D1CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FFF361B66FF870089D1CA /* LaunchScreen.xib */; };
 		EC4FFF441B66FF870089D1CA /* LunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF431B66FF870089D1CA /* LunchTests.swift */; };
 		EC4FFF501B6702CA0089D1CA /* TodaysLunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF4F1B6702CA0089D1CA /* TodaysLunchViewController.swift */; };
+		EC53C1501B6DB39400073A33 /* lunch.png in Resources */ = {isa = PBXBuildFile; fileRef = EC53C14F1B6DB39400073A33 /* lunch.png */; };
+		EC53C1521B6DB44E00073A33 /* rsz_lunch.png in Resources */ = {isa = PBXBuildFile; fileRef = EC53C1511B6DB44E00073A33 /* rsz_lunch.png */; };
 		EC74467E1B6D2031007705B1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC74467D1B6D2031007705B1 /* LoginViewController.swift */; };
 		EC7446801B6D2124007705B1 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC74467F1B6D2124007705B1 /* CreateAccountViewController.swift */; };
 		EC8C8F261B6AF07600227ECC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F251B6AF07600227ECC /* Parse.framework */; };
@@ -58,6 +60,8 @@
 		EC4FFF421B66FF870089D1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC4FFF431B66FF870089D1CA /* LunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchTests.swift; sourceTree = "<group>"; };
 		EC4FFF4F1B6702CA0089D1CA /* TodaysLunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodaysLunchViewController.swift; sourceTree = "<group>"; };
+		EC53C14F1B6DB39400073A33 /* lunch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lunch.png; path = ../../lunch.png; sourceTree = "<group>"; };
+		EC53C1511B6DB44E00073A33 /* rsz_lunch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rsz_lunch.png; path = ../../rsz_lunch.png; sourceTree = "<group>"; };
 		EC74467D1B6D2031007705B1 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EC74467F1B6D2124007705B1 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		EC8C8F251B6AF07600227ECC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 				EC4FFF361B66FF870089D1CA /* LaunchScreen.xib */,
 				EC4FFF2B1B66FF870089D1CA /* Supporting Files */,
 				EC4FFF4F1B6702CA0089D1CA /* TodaysLunchViewController.swift */,
+				EC53C1511B6DB44E00073A33 /* rsz_lunch.png */,
+				EC53C14F1B6DB39400073A33 /* lunch.png */,
 				EC74467D1B6D2031007705B1 /* LoginViewController.swift */,
 				EC74467F1B6D2124007705B1 /* CreateAccountViewController.swift */,
 			);
@@ -294,6 +300,8 @@
 			files = (
 				EC4FFF331B66FF870089D1CA /* Main.storyboard in Resources */,
 				EC4FFF381B66FF870089D1CA /* LaunchScreen.xib in Resources */,
+				EC53C1521B6DB44E00073A33 /* rsz_lunch.png in Resources */,
+				EC53C1501B6DB39400073A33 /* lunch.png in Resources */,
 				EC4FFF351B66FF870089D1CA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

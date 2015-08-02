@@ -11,7 +11,11 @@ import Parse
 import MapKit
 import GoogleMaps
 
-class TodaysLunchViewController: UIViewController {
+class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
+
+    class CustomPointAnnotation: MKPointAnnotation {
+        var imageName: String!
+    }
 
     @IBOutlet weak var selectedPlaceLabel: UILabel!
     @IBOutlet weak var selectedVotesLabel: UILabel!
@@ -25,11 +29,15 @@ class TodaysLunchViewController: UIViewController {
     let classNameKey = "Eateries"
     let placeColumnKey = "place"
     let voteColumnKey = "vote"
+    let image = UIImage(contentsOfFile: "lunch.png")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         placesClient = GMSPlacesClient()
+
+        self.mapView.zoomEnabled = true
+        self.mapView.delegate = self
+
         placesClient?.currentPlaceWithCallback({ (placeLikelihoodList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
             if let error = error {
                 println("Pick Place error: \(error.localizedDescription)")
@@ -41,19 +49,39 @@ class TodaysLunchViewController: UIViewController {
                 if let place = place {
                     var name = place.name
                     var location = place.coordinate
-                    var address = "\n".join(place.formattedAddress.componentsSeparatedByString(", "))
-                    println("name: \(name) address: \(address)")
                     let span = MKCoordinateSpanMake(0.05, 0.05)
                     let region = MKCoordinateRegion(center: location, span: span)
-                    self.mapView.setRegion(region, animated: true)
-                    var addressDict: NSDictionary = [0:address]
-                    var placemark = MKPlacemark(coordinate: location, addressDictionary: addressDict as [NSObject : AnyObject])
-                    self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
+                    var request = MKLocalSearchRequest()
+                    request.region = MKCoordinateRegion(center: location, span: span)
+                    request.naturalLanguageQuery = self.textForLunchLabel
+                    var search = MKLocalSearch(request: request)
+                    search.startWithCompletionHandler({ (response: MKLocalSearchResponse!, error: NSError?) -> Void in
+                        if response != nil && error == nil {
+                            var mapItems = response.mapItems as? [MKMapItem]
+                            var annotationList = [MKPointAnnotation]()
+                            for item in mapItems! {
+                                println("name \(item.name)")
+                                var annotation = CustomPointAnnotation()
+                                annotation.coordinate = item.placemark.coordinate
+                                annotation.title = item.name
+                                annotation.subtitle = item.phoneNumber
+                                annotation.imageName = "rsz_lunch.png"
+                                annotationList.append(annotation)
+                                self.mapView.addAnnotation(annotation)
+                            }
+                            self.mapView.showAnnotations(
+                            annotationList, animated: true)
+                        }
+
+                    })
                 }
             }
         })
     }
 
+    override func viewDidLayoutSubviews() {
+
+    }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         selectedPlaceLabel.text = textForLunchLabel
@@ -71,7 +99,27 @@ class TodaysLunchViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if !(annotation is CustomPointAnnotation) {
+            return nil
+        }
 
+        let reuseId = "test"
+
+        var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+        if anView == nil {
+            anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            anView.canShowCallout = true
+        }
+        else {
+            anView.annotation = annotation
+        }
+
+        let cpa = annotation as! CustomPointAnnotation
+        anView.image = UIImage(named:cpa.imageName)
+
+        return anView
+    }
 
     @IBAction func voteNavBarButtonClick(sender: AnyObject) {
         var query = PFQuery(className: self.classNameKey)
