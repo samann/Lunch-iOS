@@ -121,6 +121,14 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
         return anView
     }
 
+    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+        if let phoneNumber = view.annotation.subtitle {
+            var application = UIApplication.sharedApplication()
+            var url = NSURL(string: "telprompt://\(phoneNumber!)")
+            application.openURL(url!)
+        }
+    }
+
     @IBAction func voteNavBarButtonClick(sender: AnyObject) {
         var query = PFQuery(className: self.classNameKey)
         query.whereKeyExists(self.placeColumnKey)

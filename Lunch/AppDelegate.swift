@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("Kx3fR5OjKXYSqV33lycYmsv2kZMUSxdGDq7MXTYx",
             clientKey: "dAAqcZ2xPthp5ZAlRTG1Vj8xg6ibjkMGjryLkQij")
         PFUser.enableRevocableSessionInBackground()
+        GMSServices.provideAPIKey("AIzaSyDz-f6nnfUY5qoVZkCRL52P5SQcbp0q9iM")
         return true
     }
 
