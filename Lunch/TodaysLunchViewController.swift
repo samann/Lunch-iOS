@@ -118,11 +118,13 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
         if view.annotation is CustomPointAnnotation {
             if let phoneNumber = view.annotation.subtitle {
-                let regex = Regex(stringLiteral: "[0-9]*")
-                if !phoneNumber.isEmpty && phoneNumber.match(regex) {
-                    let application = UIApplication.sharedApplication()
-                    let url = NSURL(string: "telprompt://\(phoneNumber!)")
-                    application.openURL(url!)
+                if phoneNumber != nil {
+                    let regex = Regex(stringLiteral: "[0-9]*")
+                    if !phoneNumber.isEmpty && phoneNumber.match(regex) {
+                        let application = UIApplication.sharedApplication()
+                        let url = NSURL(string: "telprompt://\(phoneNumber!)")
+                        application.openURL(url!)
+                    }
                 }
             }
         }
