@@ -70,12 +70,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.lunchTableView.dequeueReusableCellWithIdentifier(lunchItemCellIdentifier) as? UITableViewCell ?? UITableViewCell(style: .Subtitle, reuseIdentifier: lunchItemCellIdentifier)
+        var cell = self.lunchTableView.dequeueReusableCellWithIdentifier(lunchItemCellIdentifier) as? UITableViewCell
+        if cell != nil {
+           cell = UITableViewCell(style: .Subtitle, reuseIdentifier: lunchItemCellIdentifier)
+        }
+        cell!.textLabel?.text = self.eateries[indexPath.row]
+        cell!.detailTextLabel?.text = "Votes: \(self.votes[indexPath.row])"
 
-        cell.textLabel?.text = self.eateries[indexPath.row]
-        cell.detailTextLabel?.text = "Votes: \(self.votes[indexPath.row])"
-
-        return cell
+        return cell!
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
