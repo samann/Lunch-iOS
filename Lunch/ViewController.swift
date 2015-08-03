@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     var eateries: [String] = []
     var votes: [Int] = []
-    var tableViewSelectedIndex = -1
+    var tableViewSelectedIndex: Int?
     var votePushSent = false
 
     let lunchDetailSegueIdentifier = "LunchDetailSegue"
@@ -70,14 +70,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell? = self.lunchTableView.dequeueReusableCellWithIdentifier(lunchItemCellIdentifier) as? UITableViewCell
-        if cell != nil {
-            cell! = UITableViewCell(style: .Subtitle, reuseIdentifier: lunchItemCellIdentifier)
-        }
-        cell!.textLabel?.text = self.eateries[indexPath.row]
-        cell!.detailTextLabel?.text = "Votes: \(self.votes[indexPath.row])"
+        let cell = self.lunchTableView.dequeueReusableCellWithIdentifier(lunchItemCellIdentifier) as? UITableViewCell ?? UITableViewCell(style: .Subtitle, reuseIdentifier: lunchItemCellIdentifier)
 
-        return cell!
+        cell.textLabel?.text = self.eateries[indexPath.row]
+        cell.detailTextLabel?.text = "Votes: \(self.votes[indexPath.row])"
+
+        return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -97,10 +95,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let vote = 0
         eateries.append(place)
         votes.append(vote)
-        let testObject = PFObject(className: classNameKey)
-        testObject[placeColumnKey] = place
-        testObject[voteColumnKey] = vote
-        testObject.saveInBackgroundWithBlock {
+        let createdPlace = PFObject(className: classNameKey)
+        createdPlace[placeColumnKey] = place
+        createdPlace[voteColumnKey] = vote
+        createdPlace.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) in
             if success {
                 println("Place \(place) has been saved with \(vote) votes")
@@ -133,7 +131,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     func retrievePlaces() {
-        var query = PFQuery(className: classNameKey)
+        let query = PFQuery(className: classNameKey)
         query.whereKeyExists(placeColumnKey)
         query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) in
             if error == nil {
@@ -154,22 +152,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func updateTableView() {
-        var indexSet = NSIndexSet(index: 0)
-        self.lunchTableView.beginUpdates()
-        self.lunchTableView.reloadSections(indexSet, withRowAnimation: .Fade)
-        self.lunchTableView.endUpdates()
+        let indexSet = NSIndexSet(index: 0)
+        lunchTableView.beginUpdates()
+        lunchTableView.reloadSections(indexSet, withRowAnimation: .Fade)
+        lunchTableView.endUpdates()
     }
 
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
 
         // DELETE
         let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
-            var query = PFQuery(className: self.classNameKey)
+            let query = PFQuery(className: self.classNameKey)
             query.whereKeyExists(self.placeColumnKey)
             query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) in
-                var pfobjects = objects as! [PFObject]
+                let pfobjects = objects as! [PFObject]
                 for object in pfobjects {
-                    var place = object[self.placeColumnKey] as! String
+                    let place = object[self.placeColumnKey] as! String
                     if place == self.eateries[index.row] {
                         pfobjects[index.row].deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) in
                             if error == nil {
@@ -188,13 +186,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         // VOTE
         let vote = UITableViewRowAction(style: .Normal, title: "Vote") { action, index in
-            var query = PFQuery(className: self.classNameKey)
+            let query = PFQuery(className: self.classNameKey)
             query.whereKeyExists(self.placeColumnKey)
             query.whereKeyExists(self.voteColumnKey)
             query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) in
-                var pfobjects = objects as! [PFObject]
+                let pfobjects = objects as! [PFObject]
                 for object in pfobjects {
-                    var place = object[self.placeColumnKey] as! String
+                    let place = object[self.placeColumnKey] as! String
                     if place == self.eateries[indexPath.row] {
                         var voteCount = object[self.voteColumnKey] as! Int
                         voteCount++
@@ -227,7 +225,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshControl.endRefreshing()
     }
 
-    @IBAction func logoutButtonClick(sender: AnyObject) {
+    @IBAction func logoutButtonTapped(sender: AnyObject) {
         PFUser.logOut()
         let currentUser = PFUser.currentUser()
         if currentUser == nil {

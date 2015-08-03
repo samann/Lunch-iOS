@@ -45,21 +45,21 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
             if let placeLikelihoodList = placeLikelihoodList {
                 let place = placeLikelihoodList.likelihoods.first?.place
                 if let place = place {
-                    var name = place.name
-                    var location = place.coordinate
-                    let span = MKCoordinateSpanMake(0.05, 0.05)
+                    let name = place.name
+                    let location = place.coordinate
+                    let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
                     let region = MKCoordinateRegion(center: location, span: span)
-                    var request = MKLocalSearchRequest()
+                    let request = MKLocalSearchRequest()
                     request.region = MKCoordinateRegion(center: location, span: span)
                     request.naturalLanguageQuery = self.textForLunchLabel
-                    var search = MKLocalSearch(request: request)
+                    let search = MKLocalSearch(request: request)
                     search.startWithCompletionHandler({ (response: MKLocalSearchResponse!, error: NSError?) in
                         if response != nil && error == nil {
-                            var mapItems = response.mapItems as? [MKMapItem]
+                            let mapItems = response.mapItems as? [MKMapItem]
                             var annotationList = [MKPointAnnotation]()
                             for item in mapItems! {
                                 println("name \(item.name)")
-                                var annotation = CustomPointAnnotation()
+                                let annotation = CustomPointAnnotation()
                                 annotation.coordinate = item.placemark.coordinate
                                 annotation.title = item.name
                                 annotation.subtitle = item.phoneNumber
@@ -81,7 +81,6 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        selectedPlaceLabel.text = textForLunchLabel
         selectedVotesLabel.text = "Votes: " + textForVotesLabel
     }
 
@@ -103,19 +102,17 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
 
         let reuseId = "test"
 
-        var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
-        if anView == nil {
-            anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            anView.canShowCallout = true
-        }
-        else {
-            anView.annotation = annotation
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            annotationView.canShowCallout = true
+        } else {
+            annotationView.annotation = annotation
         }
 
-        let cpa = annotation as! CustomPointAnnotation
-        anView.image = self.image
+        annotationView.image = self.image
 
-        return anView
+        return annotationView
     }
 
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
@@ -123,22 +120,22 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
             if let phoneNumber = view.annotation.subtitle {
                 let regex = Regex(stringLiteral: "[0-9]*")
                 if !phoneNumber.isEmpty && phoneNumber.match(regex) {
-                    var application = UIApplication.sharedApplication()
-                    var url = NSURL(string: "telprompt://\(phoneNumber!)")
+                    let application = UIApplication.sharedApplication()
+                    let url = NSURL(string: "telprompt://\(phoneNumber!)")
                     application.openURL(url!)
                 }
             }
         }
     }
 
-    @IBAction func voteNavBarButtonClick(sender: AnyObject) {
-        var query = PFQuery(className: self.classNameKey)
+    @IBAction func voteNavBarButtonTapped(sender: AnyObject) {
+        let query = PFQuery(className: self.classNameKey)
         query.whereKeyExists(self.placeColumnKey)
         query.whereKeyExists(self.voteColumnKey)
         query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) in
-            var pfobjects = objects as! [PFObject]
+            let pfobjects = objects as! [PFObject]
             for object in pfobjects {
-                var place = object[self.placeColumnKey] as! String
+                let place = object[self.placeColumnKey] as! String
                 if place == self.textForLunchLabel {
                     var voteCount = object[self.voteColumnKey] as! Int
                     voteCount++

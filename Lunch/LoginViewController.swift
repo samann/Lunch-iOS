@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
         }
     }
 
-    @IBAction func loginButtonClick(sender: AnyObject) {
+    @IBAction func loginButtonTapped(sender: UIButton) {
         if let username = userNameTextField.text, password = passwordTextField.text {
             PFUser.logInWithUsernameInBackground(username, password: password, block: { (user: PFUser?, error:NSError?) in
                 if user != nil && error == nil {
@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
         }
     }
 
-    @IBAction func createAccountButtonClicked(sender: AnyObject) {
+    @IBAction func createAccountButtonTapped(sender: UIButton) {
         self.performSegueWithIdentifier(createAccountIdentifier, sender: self)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

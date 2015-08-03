@@ -77,7 +77,7 @@
                     <navigationItem key="navigationItem" title="Lunch" id="rvL-Jr-ERA">
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="uR7-Ud-Od1">
                             <connections>
-                                <action selector="logoutButtonClick:" destination="BYZ-38-t0r" id="tSX-xL-Vyw"/>
+                                <action selector="logoutButtonTapped:" destination="BYZ-38-t0r" id="gMO-VJ-OeC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -103,30 +103,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6XA-Pw-lKk">
-                                <rect key="frame" x="0.0" y="135" width="600" height="465"/>
+                                <rect key="frame" x="-7" y="135" width="612" height="471"/>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ip4-zH-bL7">
                                 <rect key="frame" x="279" y="72" width="42" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6XA-Pw-lKk" firstAttribute="leading" secondItem="Bvw-TS-7hn" secondAttribute="leadingMargin" constant="-16" id="FTS-gK-Gkl"/>
+                            <constraint firstItem="6XA-Pw-lKk" firstAttribute="leading" secondItem="Bvw-TS-7hn" secondAttribute="leadingMargin" constant="-23" id="FTS-gK-Gkl"/>
                             <constraint firstItem="ip4-zH-bL7" firstAttribute="top" secondItem="0gc-kn-gQG" secondAttribute="bottom" constant="8" id="Gb9-fA-ubU"/>
-                            <constraint firstAttribute="centerX" secondItem="6XA-Pw-lKk" secondAttribute="centerX" id="S7H-1F-NbU"/>
+                            <constraint firstAttribute="centerX" secondItem="6XA-Pw-lKk" secondAttribute="centerX" constant="1" id="S7H-1F-NbU"/>
                             <constraint firstAttribute="centerX" secondItem="ip4-zH-bL7" secondAttribute="centerX" id="YNi-dJ-ICm"/>
-                            <constraint firstItem="6XA-Pw-lKk" firstAttribute="trailing" secondItem="Bvw-TS-7hn" secondAttribute="trailingMargin" constant="16" id="hGq-IW-Al8"/>
-                            <constraint firstItem="NtT-Kh-vb1" firstAttribute="top" secondItem="6XA-Pw-lKk" secondAttribute="bottom" id="mgR-uA-A9i"/>
+                            <constraint firstItem="6XA-Pw-lKk" firstAttribute="trailing" secondItem="Bvw-TS-7hn" secondAttribute="trailingMargin" constant="21" id="hGq-IW-Al8"/>
+                            <constraint firstItem="NtT-Kh-vb1" firstAttribute="top" secondItem="6XA-Pw-lKk" secondAttribute="bottom" constant="-6" id="mgR-uA-A9i"/>
                             <constraint firstItem="6XA-Pw-lKk" firstAttribute="top" secondItem="0gc-kn-gQG" secondAttribute="bottom" constant="71" id="xPX-F9-dxF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eqO-4R-TMl">
                         <barButtonItem key="rightBarButtonItem" title="Vote" id="WTZ-J8-8rE">
                             <connections>
-                                <action selector="voteNavBarButtonClick:" destination="oL5-r8-2U8" id="xba-mO-VVI"/>
+                                <action selector="voteNavBarButtonTapped:" destination="oL5-r8-2U8" id="jPm-Tu-i3M"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -208,7 +208,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginButtonClick:" destination="mRb-K2-foA" eventType="touchUpInside" id="P8J-IU-Zg2"/>
+                                    <action selector="loginButtonTapped:" destination="mRb-K2-foA" eventType="touchUpInside" id="2aD-xU-tyr"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New to Lunch?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AD5-K9-Okw">
@@ -223,7 +223,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="createAccountButtonClicked:" destination="mRb-K2-foA" eventType="touchUpInside" id="NBc-yC-2VW"/>
+                                    <action selector="createAccountButtonTapped:" destination="mRb-K2-foA" eventType="touchUpInside" id="ggf-1i-E2f"/>
                                 </connections>
                             </button>
                         </subviews>

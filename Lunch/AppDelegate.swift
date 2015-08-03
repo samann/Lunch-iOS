@@ -27,8 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             clientKey: plist.valueForKey("ParseClientKey") as! String)
         PFUser.enableRevocableSessionInBackground()
         GMSServices.provideAPIKey(plist.valueForKey("GoogleMapsKey") as! String)
-        let userNotificationTypes: UIUserNotificationType = (UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound)
-        let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        let userNotificationTypes = (UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound)
+        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         return true
