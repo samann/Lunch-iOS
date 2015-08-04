@@ -11,13 +11,13 @@
 		EC4FFF2E1B66FF870089D1CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF2D1B66FF870089D1CA /* AppDelegate.swift */; };
 		EC4FFF301B66FF870089D1CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF2F1B66FF870089D1CA /* ViewController.swift */; };
 		EC4FFF331B66FF870089D1CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC4FFF311B66FF870089D1CA /* Main.storyboard */; };
-		EC4FFF351B66FF870089D1CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4FFF341B66FF870089D1CA /* Images.xcassets */; };
 		EC4FFF381B66FF870089D1CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FFF361B66FF870089D1CA /* LaunchScreen.xib */; };
 		EC4FFF441B66FF870089D1CA /* LunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF431B66FF870089D1CA /* LunchTests.swift */; };
 		EC4FFF501B6702CA0089D1CA /* TodaysLunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF4F1B6702CA0089D1CA /* TodaysLunchViewController.swift */; };
+		EC74467E1B6D2031007705B1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC74467D1B6D2031007705B1 /* LoginViewController.swift */; };
+		EC7446801B6D2124007705B1 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC74467F1B6D2124007705B1 /* CreateAccountViewController.swift */; };
 		EC8C8F261B6AF07600227ECC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F251B6AF07600227ECC /* Parse.framework */; };
 		EC8C8F281B6AF0C700227ECC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F271B6AF0C700227ECC /* CoreLocation.framework */; };
-		EC8C8F2A1B6AF0CD00227ECC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F291B6AF0CD00227ECC /* StoreKit.framework */; };
 		EC8C8F2C1B6AF0D300227ECC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F2B1B6AF0D300227ECC /* CoreGraphics.framework */; };
 		EC8C8F2E1B6AF0D900227ECC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F2D1B6AF0D900227ECC /* QuartzCore.framework */; };
 		EC8C8F301B6AF0E200227ECC /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F2F1B6AF0E200227ECC /* libz.1.1.3.dylib */; };
@@ -27,6 +27,12 @@
 		EC8C8F381B6AF11700227ECC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F371B6AF11700227ECC /* SystemConfiguration.framework */; };
 		EC8C8F3A1B6AF12000227ECC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F391B6AF12000227ECC /* libsqlite3.dylib */; };
 		EC8C8F3D1B6AF42300227ECC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F3C1B6AF42300227ECC /* Bolts.framework */; };
+		ECE932E61B6E798F0031788F /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE932E51B6E798F0031788F /* Regex.swift */; };
+		ECF1A0F71B6DD6D2004FB327 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECF1A0F61B6DD6D2004FB327 /* Keys.plist */; };
+		ECF405DE1B6D649600EC6E30 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF405DD1B6D649600EC6E30 /* MapKit.framework */; };
+		ECF405E01B6D651500EC6E30 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF405DF1B6D651500EC6E30 /* Accounts.framework */; };
+		ECF405E21B6D652F00EC6E30 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF405E11B6D652F00EC6E30 /* Social.framework */; };
+		ECF7AE4F1B6F082000402021 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECF7AE4E1B6F082000402021 /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,15 +54,15 @@
 		EC4FFF2D1B66FF870089D1CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC4FFF2F1B66FF870089D1CA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EC4FFF321B66FF870089D1CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EC4FFF341B66FF870089D1CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EC4FFF371B66FF870089D1CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EC4FFF3D1B66FF870089D1CA /* LunchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4FFF421B66FF870089D1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC4FFF431B66FF870089D1CA /* LunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchTests.swift; sourceTree = "<group>"; };
 		EC4FFF4F1B6702CA0089D1CA /* TodaysLunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodaysLunchViewController.swift; sourceTree = "<group>"; };
+		EC74467D1B6D2031007705B1 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EC74467F1B6D2124007705B1 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		EC8C8F251B6AF07600227ECC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		EC8C8F271B6AF0C700227ECC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		EC8C8F291B6AF0CD00227ECC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		EC8C8F2B1B6AF0D300227ECC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EC8C8F2D1B6AF0D900227ECC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EC8C8F2F1B6AF0E200227ECC /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
@@ -66,6 +72,12 @@
 		EC8C8F371B6AF11700227ECC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EC8C8F391B6AF12000227ECC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		EC8C8F3C1B6AF42300227ECC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		ECE932E51B6E798F0031788F /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Regex.swift; path = ../Regex.swift; sourceTree = "<group>"; };
+		ECF1A0F61B6DD6D2004FB327 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		ECF405DD1B6D649600EC6E30 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		ECF405DF1B6D651500EC6E30 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		ECF405E11B6D652F00EC6E30 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		ECF7AE4E1B6F082000402021 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,16 +85,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECF405E21B6D652F00EC6E30 /* Social.framework in Frameworks */,
+				ECF405E01B6D651500EC6E30 /* Accounts.framework in Frameworks */,
 				EC8C8F3A1B6AF12000227ECC /* libsqlite3.dylib in Frameworks */,
 				EC8C8F381B6AF11700227ECC /* SystemConfiguration.framework in Frameworks */,
 				EC8C8F361B6AF10E00227ECC /* Security.framework in Frameworks */,
 				EC8C8F3D1B6AF42300227ECC /* Bolts.framework in Frameworks */,
+				ECF405DE1B6D649600EC6E30 /* MapKit.framework in Frameworks */,
 				EC8C8F341B6AF10700227ECC /* CFNetwork.framework in Frameworks */,
 				EC8C8F321B6AF0FF00227ECC /* AudioToolbox.framework in Frameworks */,
 				EC8C8F301B6AF0E200227ECC /* libz.1.1.3.dylib in Frameworks */,
 				EC8C8F2E1B6AF0D900227ECC /* QuartzCore.framework in Frameworks */,
 				EC8C8F2C1B6AF0D300227ECC /* CoreGraphics.framework in Frameworks */,
-				EC8C8F2A1B6AF0CD00227ECC /* StoreKit.framework in Frameworks */,
 				EC8C8F281B6AF0C700227ECC /* CoreLocation.framework in Frameworks */,
 				EC8C8F261B6AF07600227ECC /* Parse.framework in Frameworks */,
 				AF8970F2E7EBABF357A8EDDC /* libPods.a in Frameworks */,
@@ -111,6 +125,7 @@
 		EC4FFF1F1B66FF870089D1CA = {
 			isa = PBXGroup;
 			children = (
+				ECF1A0F61B6DD6D2004FB327 /* Keys.plist */,
 				EC8C8F3B1B6AF15B00227ECC /* Frameworks */,
 				EC4FFF2A1B66FF870089D1CA /* Lunch */,
 				EC4FFF401B66FF870089D1CA /* LunchTests */,
@@ -131,13 +146,16 @@
 		EC4FFF2A1B66FF870089D1CA /* Lunch */ = {
 			isa = PBXGroup;
 			children = (
+				ECE932E51B6E798F0031788F /* Regex.swift */,
 				EC4FFF2D1B66FF870089D1CA /* AppDelegate.swift */,
 				EC4FFF2F1B66FF870089D1CA /* ViewController.swift */,
 				EC4FFF311B66FF870089D1CA /* Main.storyboard */,
-				EC4FFF341B66FF870089D1CA /* Images.xcassets */,
+				ECF7AE4E1B6F082000402021 /* Media.xcassets */,
 				EC4FFF361B66FF870089D1CA /* LaunchScreen.xib */,
 				EC4FFF2B1B66FF870089D1CA /* Supporting Files */,
 				EC4FFF4F1B6702CA0089D1CA /* TodaysLunchViewController.swift */,
+				EC74467D1B6D2031007705B1 /* LoginViewController.swift */,
+				EC74467F1B6D2124007705B1 /* CreateAccountViewController.swift */,
 			);
 			path = Lunch;
 			sourceTree = "<group>";
@@ -170,6 +188,9 @@
 		EC8C8F3B1B6AF15B00227ECC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ECF405E11B6D652F00EC6E30 /* Social.framework */,
+				ECF405DF1B6D651500EC6E30 /* Accounts.framework */,
+				ECF405DD1B6D649600EC6E30 /* MapKit.framework */,
 				EC8C8F3C1B6AF42300227ECC /* Bolts.framework */,
 				EC8C8F391B6AF12000227ECC /* libsqlite3.dylib */,
 				EC8C8F251B6AF07600227ECC /* Parse.framework */,
@@ -180,7 +201,6 @@
 				EC8C8F2F1B6AF0E200227ECC /* libz.1.1.3.dylib */,
 				EC8C8F2D1B6AF0D900227ECC /* QuartzCore.framework */,
 				EC8C8F2B1B6AF0D300227ECC /* CoreGraphics.framework */,
-				EC8C8F291B6AF0CD00227ECC /* StoreKit.framework */,
 				EC8C8F271B6AF0C700227ECC /* CoreLocation.framework */,
 				4AA89A7B2BA284194178F39B /* libPods.a */,
 			);
@@ -238,6 +258,15 @@
 				TargetAttributes = {
 					EC4FFF271B66FF870089D1CA = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 92T8M2AC57;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					EC4FFF3C1B66FF870089D1CA = {
 						CreatedOnToolsVersion = 6.4;
@@ -269,9 +298,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECF7AE4F1B6F082000402021 /* Media.xcassets in Resources */,
+				ECF1A0F71B6DD6D2004FB327 /* Keys.plist in Resources */,
 				EC4FFF331B66FF870089D1CA /* Main.storyboard in Resources */,
 				EC4FFF381B66FF870089D1CA /* LaunchScreen.xib in Resources */,
-				EC4FFF351B66FF870089D1CA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,9 +352,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC7446801B6D2124007705B1 /* CreateAccountViewController.swift in Sources */,
+				EC74467E1B6D2031007705B1 /* LoginViewController.swift in Sources */,
 				EC4FFF501B6702CA0089D1CA /* TodaysLunchViewController.swift in Sources */,
 				EC4FFF301B66FF870089D1CA /* ViewController.swift in Sources */,
 				EC4FFF2E1B66FF870089D1CA /* AppDelegate.swift in Sources */,
+				ECE932E61B6E798F0031788F /* Regex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +487,8 @@
 			baseConfigurationReference = 86B2AC508793E2103BF8BF42 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -469,6 +504,8 @@
 			baseConfigurationReference = BC64E1B93114907F50261FD0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
