@@ -32,7 +32,7 @@
 		ECF405DE1B6D649600EC6E30 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF405DD1B6D649600EC6E30 /* MapKit.framework */; };
 		ECF405E01B6D651500EC6E30 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF405DF1B6D651500EC6E30 /* Accounts.framework */; };
 		ECF405E21B6D652F00EC6E30 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF405E11B6D652F00EC6E30 /* Social.framework */; };
-		ECF7AE4F1B6F082000402021 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECF7AE4E1B6F082000402021 /* Media.xcassets */; };
+		ECF7AE4F1B6F082000402021 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECF7AE4E1B6F082000402021 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +77,7 @@
 		ECF405DD1B6D649600EC6E30 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		ECF405DF1B6D651500EC6E30 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		ECF405E11B6D652F00EC6E30 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		ECF7AE4E1B6F082000402021 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		ECF7AE4E1B6F082000402021 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +150,7 @@
 				EC4FFF2D1B66FF870089D1CA /* AppDelegate.swift */,
 				EC4FFF2F1B66FF870089D1CA /* ViewController.swift */,
 				EC4FFF311B66FF870089D1CA /* Main.storyboard */,
-				ECF7AE4E1B6F082000402021 /* Media.xcassets */,
+				ECF7AE4E1B6F082000402021 /* Images.xcassets */,
 				EC4FFF361B66FF870089D1CA /* LaunchScreen.xib */,
 				EC4FFF2B1B66FF870089D1CA /* Supporting Files */,
 				EC4FFF4F1B6702CA0089D1CA /* TodaysLunchViewController.swift */,
@@ -298,7 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECF7AE4F1B6F082000402021 /* Media.xcassets in Resources */,
+				ECF7AE4F1B6F082000402021 /* Images.xcassets in Resources */,
 				ECF1A0F71B6DD6D2004FB327 /* Keys.plist in Resources */,
 				EC4FFF331B66FF870089D1CA /* Main.storyboard in Resources */,
 				EC4FFF381B66FF870089D1CA /* LaunchScreen.xib in Resources */,
