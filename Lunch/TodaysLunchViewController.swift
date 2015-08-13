@@ -21,6 +21,7 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
 
     var currentObject: PFObject?
     var selectedIndex: Int?
+    var selectedAnnotation: CustomPointAnnotation?
     var placesClient = GMSPlacesClient()
     var placeName: String?
     var voteCount: Int?
@@ -85,6 +86,7 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLayoutSubviews() {
 
     }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -121,15 +123,44 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
 
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
         if view.annotation is CustomPointAnnotation {
-            if let phoneNumber = view.annotation.subtitle {
-                if phoneNumber != nil {
-                    let regex = Regex(stringLiteral: "[0-9]*")
-                    if !phoneNumber.isEmpty && phoneNumber.match(regex) {
-                        let application = UIApplication.sharedApplication()
-                        let url = NSURL(string: "telprompt://\(phoneNumber!)")
-                        application.openURL(url!)
+            var alertView = UIAlertView()
+            alertView.delegate = self
+            alertView.addButtonWithTitle("Navigate")
+            alertView.addButtonWithTitle("Call")
+            alertView.addButtonWithTitle("Cancel")
+            alertView.title = view.annotation.title!
+            alertView.show()
+            selectedAnnotation = view.annotation as? CustomPointAnnotation
+        }
+    }
+
+    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int){
+        if let annotation = selectedAnnotation {
+            switch buttonIndex{
+            case 0:
+                println("navigate")
+                let placemark = MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil)
+                let mapItem = MKMapItem(placemark: placemark)
+                let launchItems = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+                let currentLocation = MKMapItem.mapItemForCurrentLocation()
+                MKMapItem.openMapsWithItems([currentLocation, mapItem], launchOptions: launchItems)
+            case 1:
+                println("call")
+                if annotation.subtitle != nil {
+                    if let phoneNumber = annotation.subtitle {
+                        let regex = Regex(stringLiteral: "[0-9]*")
+                        if !phoneNumber.isEmpty && phoneNumber.match(regex) {
+                            let application = UIApplication.sharedApplication()
+                            let url = NSURL(string: "tel://\(phoneNumber)")
+                            application.openURL(url!)
+                        }
                     }
                 }
+            case 2:
+                println("cancel")
+                alertView.resignFirstResponder()
+            default:
+                println("oops")
             }
         }
     }
@@ -151,6 +182,5 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
                 }
             }
         })
-
     }
 }
