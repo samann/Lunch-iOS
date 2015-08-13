@@ -49,6 +49,8 @@ class LoginViewController: UIViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == loginIdentifier {
+            let lunchTableViewController = segue.destinationViewController as! LunchPFTableViewController
+            lunchTableViewController.loadObjects()
             println("logged in")
         } else if segue.identifier == createAccountIdentifier {
             println("create account")

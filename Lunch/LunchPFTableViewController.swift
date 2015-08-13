@@ -30,6 +30,10 @@ class LunchPFTableViewController: PFQueryTableViewController {
         self.paginationEnabled = false
     }
 
+    override func viewDidLoad() {
+        self.navigationItem.hidesBackButton = true
+    }
+
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: classKey)
 
@@ -111,6 +115,17 @@ class LunchPFTableViewController: PFQueryTableViewController {
         })
         presentViewController(passwordPrompt, animated: true, completion: nil)
     }
+
+    @IBAction func logoutBarItemTapped(sender: UIBarButtonItem) {
+        PFUser.logOut()
+        let currentUser = PFUser.currentUser()
+        if currentUser == nil {
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        } else {
+            println("Something went wrong logging out with user: \(currentUser)")
+        }
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let detailView = segue.destinationViewController as! TodaysLunchViewController
 

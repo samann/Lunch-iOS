@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--LunchPal-->
         <scene sceneID="sbp-2V-EJD">
             <objects>
                 <tableViewController id="arR-Xe-ElN" customClass="LunchPFTableViewController" customModule="Lunch" customModuleProvider="target" sceneMemberID="viewController">
@@ -43,7 +43,12 @@
                             <outlet property="delegate" destination="arR-Xe-ElN" id="JHl-Oc-UGp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="8gc-0l-oun">
+                    <navigationItem key="navigationItem" title="LunchPal" id="8gc-0l-oun">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="k6Z-P2-I1X">
+                            <connections>
+                                <action selector="logoutBarItemTapped:" destination="arR-Xe-ElN" id="keB-cT-mDG"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NSz-hq-3ZP">
                             <connections>
                                 <action selector="addPlaceBarItemTapped:" destination="arR-Xe-ElN" id="wXa-xB-8Bp"/>
