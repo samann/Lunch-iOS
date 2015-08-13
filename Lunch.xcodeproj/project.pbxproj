@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AF8970F2E7EBABF357A8EDDC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA89A7B2BA284194178F39B /* libPods.a */; };
 		EC4FFF2E1B66FF870089D1CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF2D1B66FF870089D1CA /* AppDelegate.swift */; };
-		EC4FFF301B66FF870089D1CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF2F1B66FF870089D1CA /* ViewController.swift */; };
 		EC4FFF331B66FF870089D1CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC4FFF311B66FF870089D1CA /* Main.storyboard */; };
 		EC4FFF381B66FF870089D1CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FFF361B66FF870089D1CA /* LaunchScreen.xib */; };
 		EC4FFF441B66FF870089D1CA /* LunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FFF431B66FF870089D1CA /* LunchTests.swift */; };
@@ -54,7 +53,6 @@
 		EC4FFF281B66FF870089D1CA /* Lunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4FFF2C1B66FF870089D1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC4FFF2D1B66FF870089D1CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EC4FFF2F1B66FF870089D1CA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EC4FFF321B66FF870089D1CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EC4FFF371B66FF870089D1CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EC4FFF3D1B66FF870089D1CA /* LunchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,7 +151,6 @@
 			children = (
 				ECE932E51B6E798F0031788F /* Regex.swift */,
 				EC4FFF2D1B66FF870089D1CA /* AppDelegate.swift */,
-				EC4FFF2F1B66FF870089D1CA /* ViewController.swift */,
 				EC4FFF311B66FF870089D1CA /* Main.storyboard */,
 				ECF7AE4E1B6F082000402021 /* Images.xcassets */,
 				EC4FFF361B66FF870089D1CA /* LaunchScreen.xib */,
@@ -362,7 +359,6 @@
 				EC7446801B6D2124007705B1 /* CreateAccountViewController.swift in Sources */,
 				EC74467E1B6D2031007705B1 /* LoginViewController.swift in Sources */,
 				EC4FFF501B6702CA0089D1CA /* TodaysLunchViewController.swift in Sources */,
-				EC4FFF301B66FF870089D1CA /* ViewController.swift in Sources */,
 				ECE9DDBB1B7D455400A6FDB6 /* LunchPFTableViewController.swift in Sources */,
 				EC4FFF2E1B66FF870089D1CA /* AppDelegate.swift in Sources */,
 				ECE932E61B6E798F0031788F /* Regex.swift in Sources */,
