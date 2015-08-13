@@ -112,6 +112,8 @@ class LunchPFTableViewController: PFQueryTableViewController {
         eateryPrompt.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
             textField.placeholder = "Eatery"
             inputTextField = textField
+            inputTextField?.autocapitalizationType = UITextAutocapitalizationType.Words
+            inputTextField?.keyboardType = UIKeyboardType.NamePhonePad
         })
         presentViewController(eateryPrompt, animated: true, completion: nil)
     }
