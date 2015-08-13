@@ -53,15 +53,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let detailView = segue.destinationViewController as? TodaysLunchViewController {
-            if let eateryIndex = lunchTableView.indexPathForSelectedRow()?.row {
-                detailView.navigationController?.title = eateries[eateryIndex]
-                detailView.textForLunchLabel = eateries[eateryIndex]
-                detailView.textForVotesLabel = "\(votes[eateryIndex])"
-                detailView.selectedIndex = lunchTableView.indexPathForSelectedRow()!.row as Int
-            }
-
-        }
+//        if let detailView = segue.destinationViewController as? TodaysLunchViewController {
+//            if let eateryIndex = lunchTableView.indexPathForSelectedRow()?.row {
+//                detailView.navigationController?.title = eateries[eateryIndex]
+//                detailView.textForLunchLabel = eateries[eateryIndex]
+//                detailView.textForVotesLabel = "\(votes[eateryIndex])"
+//                detailView.selectedIndex = lunchTableView.indexPathForSelectedRow()!.row as Int
+//            }
+//
+//        }
 
     }
 

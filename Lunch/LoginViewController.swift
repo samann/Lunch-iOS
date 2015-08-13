@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
-    let loginIdentifier = "loginWithUsername"
+    let loginIdentifier = "loginSegue"
     let createAccountIdentifier = "createAccount"
 
     override func viewDidLoad() {

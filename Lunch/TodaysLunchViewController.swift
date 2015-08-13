@@ -19,10 +19,11 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var selectedVotesLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
 
-    var textForLunchLabel = ""
-    var textForVotesLabel = ""
+    var currentObject: PFObject?
     var selectedIndex: Int?
     var placesClient = GMSPlacesClient()
+    var placeName: String?
+    var voteCount: Int?
 
     let classNameKey = "Eateries"
     let placeColumnKey = "place"
@@ -31,7 +32,12 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = textForLunchLabel
+        if let object = currentObject {
+            self.voteCount = object[voteColumnKey] as? Int
+            self.placeName = object[placeColumnKey] as? String
+            self.navigationItem.title = self.placeName
+            self.selectedVotesLabel.text = "Votes: \(self.voteCount!)"
+        }
 
         self.mapView.zoomEnabled = true
         self.mapView.delegate = self
@@ -51,7 +57,7 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
                     let region = MKCoordinateRegion(center: location, span: span)
                     let request = MKLocalSearchRequest()
                     request.region = MKCoordinateRegion(center: location, span: span)
-                    request.naturalLanguageQuery = self.textForLunchLabel
+                    request.naturalLanguageQuery = self.placeName
                     let search = MKLocalSearch(request: request)
                     search.startWithCompletionHandler({ (response: MKLocalSearchResponse!, error: NSError?) in
                         if response != nil && error == nil {
@@ -81,14 +87,12 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        selectedVotesLabel.text = "Votes: " + textForVotesLabel
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        let vc = self.navigationController?.topViewController as? ViewController
-        vc?.votes[selectedIndex!] = textForVotesLabel.toInt()!
-        vc?.updateTableView()
+        let vc = self.navigationController?.topViewController as? LunchPFTableViewController
+        vc?.loadObjects()
     }
 
     override func didReceiveMemoryWarning() {
@@ -138,13 +142,12 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
             let pfobjects = objects as! [PFObject]
             for object in pfobjects {
                 let place = object[self.placeColumnKey] as! String
-                if place == self.textForLunchLabel {
+                if place == self.placeName {
                     var voteCount = object[self.voteColumnKey] as! Int
                     voteCount++
                     object[self.voteColumnKey] = voteCount
                     object.saveInBackground()
-                    self.textForVotesLabel = "\(voteCount)"
-                    self.selectedVotesLabel.text = "Votes: " + self.textForVotesLabel
+                    self.selectedVotesLabel.text = "Votes: \(voteCount)"
                 }
             }
         })
