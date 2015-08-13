@@ -95,9 +95,9 @@ class LunchPFTableViewController: PFQueryTableViewController {
 
     @IBAction func addPlaceBarItemTapped(sender: UIBarButtonItem) {
         var inputTextField: UITextField?
-        let passwordPrompt = UIAlertController(title: "Enter an Eatery", message: "Look up the best place to eat!", preferredStyle: UIAlertControllerStyle.Alert)
-        passwordPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
-        passwordPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) in
+        let eateryPrompt = UIAlertController(title: "Enter an Eatery", message: "Look up the best place to eat!", preferredStyle: UIAlertControllerStyle.Alert)
+        eateryPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        eateryPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) in
             self.newEateryName = inputTextField?.text
             let eatery = PFObject(className: self.classKey)
             eatery[self.placeKey] = self.newEateryName
@@ -109,11 +109,11 @@ class LunchPFTableViewController: PFQueryTableViewController {
                 }
             })
         }))
-        passwordPrompt.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+        eateryPrompt.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
             textField.placeholder = "Eatery"
             inputTextField = textField
         })
-        presentViewController(passwordPrompt, animated: true, completion: nil)
+        presentViewController(eateryPrompt, animated: true, completion: nil)
     }
 
     @IBAction func logoutBarItemTapped(sender: UIBarButtonItem) {
