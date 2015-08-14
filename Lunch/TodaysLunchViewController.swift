@@ -123,45 +123,31 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
 
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
         if view.annotation is CustomPointAnnotation {
-            var alertView = UIAlertView()
-            alertView.delegate = self
-            alertView.addButtonWithTitle("Navigate")
-            alertView.addButtonWithTitle("Call")
-            alertView.addButtonWithTitle("Cancel")
-            alertView.title = view.annotation.title!
-            alertView.show()
-            selectedAnnotation = view.annotation as? CustomPointAnnotation
-        }
-    }
-
-    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int){
-        if let annotation = selectedAnnotation {
-            switch buttonIndex{
-            case 0:
-                println("navigate")
-                let placemark = MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil)
+            var alertView = UIAlertController(title: "LunchPal", message: view.annotation.title!, preferredStyle: UIAlertControllerStyle.Alert)
+            alertView.addAction(UIAlertAction(title: "Navigation", style: .Default, handler: { (action) in
+                let placemark = MKPlacemark(coordinate: view.annotation.coordinate, addressDictionary: nil)
                 let mapItem = MKMapItem(placemark: placemark)
                 let launchItems = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
                 let currentLocation = MKMapItem.mapItemForCurrentLocation()
                 MKMapItem.openMapsWithItems([currentLocation, mapItem], launchOptions: launchItems)
-            case 1:
-                println("call")
-                if annotation.subtitle != nil {
-                    if let phoneNumber = annotation.subtitle {
-                        let regex = Regex(stringLiteral: "[0-9]*")
+            }))
+            alertView.addAction(UIAlertAction(title: "Call", style: .Default, handler: { (action) in
+                if view.annotation.subtitle != nil {
+                    if let phoneNumber = view.annotation.subtitle {
+                        let regex = Regex(stringLiteral: "^\\s^*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$")
                         if !phoneNumber.isEmpty && phoneNumber.match(regex) {
                             let application = UIApplication.sharedApplication()
                             let url = NSURL(string: "tel://\(phoneNumber)")
+                            println("phoneNumber = \(phoneNumber)")
+                            println("regex = \(regex)")
                             application.openURL(url!)
                         }
                     }
                 }
-            case 2:
-                println("cancel")
-                alertView.resignFirstResponder()
-            default:
-                println("oops")
-            }
+            }))
+            alertView.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            presentViewController(alertView, animated: true, completion: nil)
+            selectedAnnotation = view.annotation as? CustomPointAnnotation
         }
     }
 

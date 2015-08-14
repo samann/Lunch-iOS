@@ -34,27 +34,34 @@ class CreateAccountViewController: UIViewController {
                 if error == nil {
                    self.navigationController?.popToRootViewControllerAnimated(true)
                 } else {
-                    var alert = UIAlertView(title: "Error", message: "There was a problem", delegate: nil, cancelButtonTitle: "Whoops")
-                    alert.show()
+                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
             }
         }
     }
 
     func checkInputForErrors(username: String, password: String, email: String, confirmedPassword: String) -> Bool {
+        let alertView = UIAlertController(title: "Error", message: "", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+        var hasNoErrors = true
         if username == "" {
-            UIAlertView(title: "Error", message: "No username", delegate: nil, cancelButtonTitle: "Whoops").show()
-            return false
+            alertView.message = "No username"
+            hasNoErrors = false
         } else if email == "" {
-            UIAlertView(title: "Error", message: "No email", delegate: nil, cancelButtonTitle: "Whoops").show()
-            return false
+            alertView.message = "No email"
+            hasNoErrors = false
         } else if password != confirmedPassword {
-            UIAlertView(title: "Error", message: "Passwords don't match", delegate: nil, cancelButtonTitle: "Whoops").show()
-            return false
+            alertView.message = "Passwords don't match"
+            hasNoErrors = false
         } else if password == "" {
-            UIAlertView(title: "Error", message: "No password", delegate: nil, cancelButtonTitle: "Whoops").show()
-            return false
+            alertView.message = "No password"
+            hasNoErrors = false
         }
-        return true
+        if !hasNoErrors {
+            presentViewController(alertView, animated: true, completion: nil)
+        }
+        return hasNoErrors
     }
 }

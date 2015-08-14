@@ -58,7 +58,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Sr-M9-F2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="833" y="1208"/>
+            <point key="canvasLocation" x="834" y="1199"/>
         </scene>
         <!--Todays Lunch View Controller-->
         <scene sceneID="yKD-PT-iiH">
@@ -239,7 +239,7 @@
                                     <constraint firstAttribute="width" constant="248" id="B4j-dX-2up"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qOz-cG-VWa">
                                 <rect key="frame" x="214" y="148" width="173" height="30"/>

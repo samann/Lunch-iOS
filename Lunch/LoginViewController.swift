@@ -35,8 +35,8 @@ class LoginViewController: UIViewController {
                 if user != nil && error == nil {
                     self.performSegueWithIdentifier(self.loginIdentifier, sender: self)
                 } else {
-                    let alertView = UIAlertView(title: "Error", message: "Login Failed. \nWhoops!", delegate: nil, cancelButtonTitle: "OK")
-                    alertView.show()
+                    let alertView = UIAlertController(title: "Error", message: "Login Failed.\nWhoops!", preferredStyle: UIAlertControllerStyle.Alert)
+                    self.presentViewController(alertView, animated: true, completion: nil)
                 }
             })
         }

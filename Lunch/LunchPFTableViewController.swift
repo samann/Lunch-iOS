@@ -42,7 +42,7 @@ class LunchPFTableViewController: PFQueryTableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
-        var cell = tableView.dequeueReusableCellWithIdentifier("lunchPlaceCell") as! PFTableViewCell!
+        var cell = tableView.dequeueReusableCellWithIdentifier("lunchPlaceCell") as? PFTableViewCell
         if cell == nil {
             cell = PFTableViewCell(style: .Subtitle, reuseIdentifier: "lunchPlaceCell")
         }
@@ -119,13 +119,17 @@ class LunchPFTableViewController: PFQueryTableViewController {
     }
 
     @IBAction func logoutBarItemTapped(sender: UIBarButtonItem) {
-        PFUser.logOut()
-        let currentUser = PFUser.currentUser()
-        if currentUser == nil {
-            self.navigationController?.popToRootViewControllerAnimated(true)
-        } else {
-            println("Something went wrong logging out with user: \(currentUser)")
+        PFUser.logOutInBackgroundWithBlock { (error) in
+            if error == nil {
+                let currentUser = PFUser.currentUser()
+                if currentUser == nil {
+                    self.navigationController?.popToRootViewControllerAnimated(true)
+                } else {
+                    println("Something went wrong logging out with user: \(currentUser)")
+                }
+            }
         }
+
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
