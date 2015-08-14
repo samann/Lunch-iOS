@@ -27,8 +27,8 @@
 		EC8C8F3A1B6AF12000227ECC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F391B6AF12000227ECC /* libsqlite3.dylib */; };
 		EC8C8F3D1B6AF42300227ECC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8C8F3C1B6AF42300227ECC /* Bolts.framework */; };
 		ECE932E61B6E798F0031788F /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE932E51B6E798F0031788F /* Regex.swift */; };
-		ECE9DDB91B7D451A00A6FDB6 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE9DDB81B7D451A00A6FDB6 /* ParseUI.framework */; };
 		ECE9DDBB1B7D455400A6FDB6 /* LunchPFTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE9DDBA1B7D455400A6FDB6 /* LunchPFTableViewController.swift */; };
+		ECE9DDBD1B7D6F8F00A6FDB6 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE9DDBC1B7D6F8F00A6FDB6 /* ParseUI.framework */; };
 		ECF1A0F71B6DD6D2004FB327 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECF1A0F61B6DD6D2004FB327 /* Keys.plist */; };
 		ECF405DE1B6D649600EC6E30 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF405DD1B6D649600EC6E30 /* MapKit.framework */; };
 		ECF405E01B6D651500EC6E30 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF405DF1B6D651500EC6E30 /* Accounts.framework */; };
@@ -73,8 +73,8 @@
 		EC8C8F391B6AF12000227ECC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		EC8C8F3C1B6AF42300227ECC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		ECE932E51B6E798F0031788F /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Regex.swift; path = ../Regex.swift; sourceTree = "<group>"; };
-		ECE9DDB81B7D451A00A6FDB6 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "../parse-library-1.7.5/ParseUI.framework"; sourceTree = "<group>"; };
 		ECE9DDBA1B7D455400A6FDB6 /* LunchPFTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunchPFTableViewController.swift; sourceTree = "<group>"; };
+		ECE9DDBC1B7D6F8F00A6FDB6 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		ECF1A0F61B6DD6D2004FB327 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		ECF405DD1B6D649600EC6E30 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		ECF405DF1B6D651500EC6E30 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -87,13 +87,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECE9DDB91B7D451A00A6FDB6 /* ParseUI.framework in Frameworks */,
 				ECF405E21B6D652F00EC6E30 /* Social.framework in Frameworks */,
 				ECF405E01B6D651500EC6E30 /* Accounts.framework in Frameworks */,
 				EC8C8F3A1B6AF12000227ECC /* libsqlite3.dylib in Frameworks */,
 				EC8C8F381B6AF11700227ECC /* SystemConfiguration.framework in Frameworks */,
 				EC8C8F361B6AF10E00227ECC /* Security.framework in Frameworks */,
 				EC8C8F3D1B6AF42300227ECC /* Bolts.framework in Frameworks */,
+				ECE9DDBD1B7D6F8F00A6FDB6 /* ParseUI.framework in Frameworks */,
 				ECF405DE1B6D649600EC6E30 /* MapKit.framework in Frameworks */,
 				EC8C8F341B6AF10700227ECC /* CFNetwork.framework in Frameworks */,
 				EC8C8F321B6AF0FF00227ECC /* AudioToolbox.framework in Frameworks */,
@@ -191,7 +191,7 @@
 		EC8C8F3B1B6AF15B00227ECC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ECE9DDB81B7D451A00A6FDB6 /* ParseUI.framework */,
+				ECE9DDBC1B7D6F8F00A6FDB6 /* ParseUI.framework */,
 				ECF405E11B6D652F00EC6E30 /* Social.framework */,
 				ECF405DF1B6D651500EC6E30 /* Accounts.framework */,
 				ECF405DD1B6D649600EC6E30 /* MapKit.framework */,
