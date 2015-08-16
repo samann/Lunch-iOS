@@ -34,10 +34,12 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let object = currentObject {
-            self.voteCount = object[voteColumnKey] as? Int
-            self.placeName = object[placeColumnKey] as? String
-            self.navigationItem.title = self.placeName
-            self.selectedVotesLabel.text = "Votes: \(self.voteCount!)"
+            if let votes = object[self.voteColumnKey] as? Int, place = object[self.placeColumnKey] as? String {
+                self.placeName = place
+                self.voteCount = votes
+                self.navigationItem.title = self.placeName
+                self.selectedVotesLabel.text = "Votes: \(self.voteCount!)"
+            }
         }
 
         self.mapView.zoomEnabled = true
@@ -45,7 +47,6 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
 
         placesClient.currentPlaceWithCallback({ (placeLikelihoodList: GMSPlaceLikelihoodList?, error: NSError?) in
             if let error = error {
-                println("Pick Place error: \(error.localizedDescription)")
                 return
             }
 
@@ -65,7 +66,6 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
                             let mapItems = response.mapItems as? [MKMapItem]
                             var annotationList = [MKPointAnnotation]()
                             for item in mapItems! {
-                                println("name \(item.name)")
                                 let annotation = CustomPointAnnotation()
                                 annotation.coordinate = item.placemark.coordinate
                                 annotation.title = item.name
@@ -134,12 +134,14 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
             alertView.addAction(UIAlertAction(title: "Call", style: .Default, handler: { (action) in
                 if view.annotation.subtitle != nil {
                     if let phoneNumber = view.annotation.subtitle {
-                        let regex = Regex(stringLiteral: "^\\s^*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$")
-                        if !phoneNumber.isEmpty && phoneNumber.match(regex) {
+                        if phoneNumber == nil {
+                            return
+                        }
+                        let regex = Regex(stringLiteral: "^[0-9]+$")
+                        let numberToCall = phoneNumber.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "+( )-"))
+                        if !numberToCall.isEmpty && numberToCall.match(regex) {
                             let application = UIApplication.sharedApplication()
-                            let url = NSURL(string: "tel://\(phoneNumber)")
-                            println("phoneNumber = \(phoneNumber)")
-                            println("regex = \(regex)")
+                            let url = NSURL(string: "tel://\(numberToCall)")
                             application.openURL(url!)
                         }
                     }

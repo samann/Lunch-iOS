@@ -25,7 +25,7 @@ class LunchPFTableViewController: PFQueryTableViewController {
     required init!(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
 
-        self.parseClassName = "Eateries"
+        self.parseClassName = classKey
         self.pullToRefreshEnabled = true
         self.paginationEnabled = false
     }
@@ -42,9 +42,10 @@ class LunchPFTableViewController: PFQueryTableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
-        var cell = tableView.dequeueReusableCellWithIdentifier("lunchPlaceCell") as? PFTableViewCell
+        let cellIdentifier = "lunchPlaceCell"
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? PFTableViewCell
         if cell == nil {
-            cell = PFTableViewCell(style: .Subtitle, reuseIdentifier: "lunchPlaceCell")
+            cell = PFTableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
         }
         if let placeName = object?[placeKey] as? String {
             cell?.textLabel?.text = placeName
@@ -62,7 +63,6 @@ class LunchPFTableViewController: PFQueryTableViewController {
             self.objectAtIndexPath(indexPath)?.deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 if success && error == nil {
                     self.loadObjects()
-                    self.tableView.reloadData()
                 }
             })
 
@@ -76,7 +76,6 @@ class LunchPFTableViewController: PFQueryTableViewController {
             self.objectAtIndexPath(indexPath)?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) in
                 if success && error == nil {
                     self.loadObjects()
-                    self.tableView.reloadData()
                 }
             })
         }
@@ -85,12 +84,10 @@ class LunchPFTableViewController: PFQueryTableViewController {
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // the cells you would like the actions to appear needs to be editable
         return true
     }
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        // you need to implement this method too or you can't swipe to display the actions
     }
 
     @IBAction func addPlaceBarItemTapped(sender: UIBarButtonItem) {
@@ -105,12 +102,11 @@ class LunchPFTableViewController: PFQueryTableViewController {
             eatery.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) in
                 if success && error == nil {
                     self.loadObjects()
-                    self.tableView.reloadData()
                 }
             })
         }))
         eateryPrompt.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-            textField.placeholder = "Eatery"
+            textField.placeholder = self.classKey
             inputTextField = textField
             inputTextField?.autocapitalizationType = UITextAutocapitalizationType.Words
             inputTextField?.keyboardType = UIKeyboardType.NamePhonePad
@@ -124,8 +120,6 @@ class LunchPFTableViewController: PFQueryTableViewController {
                 let currentUser = PFUser.currentUser()
                 if currentUser == nil {
                     self.navigationController?.popToRootViewControllerAnimated(true)
-                } else {
-                    println("Something went wrong logging out with user: \(currentUser)")
                 }
             }
         }
@@ -133,12 +127,12 @@ class LunchPFTableViewController: PFQueryTableViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let detailView = segue.destinationViewController as! TodaysLunchViewController
-
-        if let indexPath = self.tableView.indexPathForSelectedRow() {
-            let row = Int(indexPath.row)
-            detailView.currentObject = (objects?[row] as! PFObject)
-            detailView.selectedIndex = row
+        if let detailView = segue.destinationViewController as? TodaysLunchViewController {
+            if let indexPath = self.tableView.indexPathForSelectedRow() {
+                let row = Int(indexPath.row)
+                detailView.currentObject = (objects?[row] as! PFObject)
+                detailView.selectedIndex = row
+            }
         }
     }
 }
