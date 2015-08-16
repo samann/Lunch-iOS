@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
-    let loginIdentifier = "loginWithUsername"
+    let loginIdentifier = "loginSegue"
     let createAccountIdentifier = "createAccount"
 
     override func viewDidLoad() {
@@ -35,8 +35,8 @@ class LoginViewController: UIViewController {
                 if user != nil && error == nil {
                     self.performSegueWithIdentifier(self.loginIdentifier, sender: self)
                 } else {
-                    let alertView = UIAlertView(title: "Error", message: "Login Failed. \nWhoops!", delegate: nil, cancelButtonTitle: "OK")
-                    alertView.show()
+                    let alertView = UIAlertController(title: "Error", message: "Login Failed.\nWhoops!", preferredStyle: UIAlertControllerStyle.Alert)
+                    self.presentViewController(alertView, animated: true, completion: nil)
                 }
             })
         }
@@ -49,9 +49,8 @@ class LoginViewController: UIViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == loginIdentifier {
-            println("logged in")
-        } else if segue.identifier == createAccountIdentifier {
-            println("create account")
+            let lunchTableViewController = segue.destinationViewController as! LunchPFTableViewController
+            lunchTableViewController.loadObjects()
         }
     }
 }

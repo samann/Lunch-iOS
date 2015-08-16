@@ -19,10 +19,12 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var selectedVotesLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
 
-    var textForLunchLabel = ""
-    var textForVotesLabel = ""
+    var currentObject: PFObject?
     var selectedIndex: Int?
+    var selectedAnnotation: CustomPointAnnotation?
     var placesClient = GMSPlacesClient()
+    var placeName: String?
+    var voteCount: Int?
 
     let classNameKey = "Eateries"
     let placeColumnKey = "place"
@@ -31,14 +33,20 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = textForLunchLabel
+        if let object = currentObject {
+            if let votes = object[self.voteColumnKey] as? Int, place = object[self.placeColumnKey] as? String {
+                self.placeName = place
+                self.voteCount = votes
+                self.navigationItem.title = self.placeName
+                self.selectedVotesLabel.text = "Votes: \(self.voteCount!)"
+            }
+        }
 
         self.mapView.zoomEnabled = true
         self.mapView.delegate = self
 
         placesClient.currentPlaceWithCallback({ (placeLikelihoodList: GMSPlaceLikelihoodList?, error: NSError?) in
             if let error = error {
-                println("Pick Place error: \(error.localizedDescription)")
                 return
             }
 
@@ -51,14 +59,13 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
                     let region = MKCoordinateRegion(center: location, span: span)
                     let request = MKLocalSearchRequest()
                     request.region = MKCoordinateRegion(center: location, span: span)
-                    request.naturalLanguageQuery = self.textForLunchLabel
+                    request.naturalLanguageQuery = self.placeName
                     let search = MKLocalSearch(request: request)
                     search.startWithCompletionHandler({ (response: MKLocalSearchResponse!, error: NSError?) in
                         if response != nil && error == nil {
                             let mapItems = response.mapItems as? [MKMapItem]
                             var annotationList = [MKPointAnnotation]()
                             for item in mapItems! {
-                                println("name \(item.name)")
                                 let annotation = CustomPointAnnotation()
                                 annotation.coordinate = item.placemark.coordinate
                                 annotation.title = item.name
@@ -79,16 +86,15 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLayoutSubviews() {
 
     }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        selectedVotesLabel.text = "Votes: " + textForVotesLabel
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        let vc = self.navigationController?.topViewController as? ViewController
-        vc?.votes[selectedIndex!] = textForVotesLabel.toInt()!
-        vc?.updateTableView()
+        let vc = self.navigationController?.topViewController as? LunchPFTableViewController
+        vc?.loadObjects()
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,16 +123,33 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
 
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
         if view.annotation is CustomPointAnnotation {
-            if let phoneNumber = view.annotation.subtitle {
-                if phoneNumber != nil {
-                    let regex = Regex(stringLiteral: "[0-9]*")
-                    if !phoneNumber.isEmpty && phoneNumber.match(regex) {
-                        let application = UIApplication.sharedApplication()
-                        let url = NSURL(string: "telprompt://\(phoneNumber!)")
-                        application.openURL(url!)
+            var alertView = UIAlertController(title: "LunchPal", message: view.annotation.title!, preferredStyle: UIAlertControllerStyle.Alert)
+            alertView.addAction(UIAlertAction(title: "Navigation", style: .Default, handler: { (action) in
+                let placemark = MKPlacemark(coordinate: view.annotation.coordinate, addressDictionary: nil)
+                let mapItem = MKMapItem(placemark: placemark)
+                let launchItems = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+                let currentLocation = MKMapItem.mapItemForCurrentLocation()
+                MKMapItem.openMapsWithItems([currentLocation, mapItem], launchOptions: launchItems)
+            }))
+            alertView.addAction(UIAlertAction(title: "Call", style: .Default, handler: { (action) in
+                if view.annotation.subtitle != nil {
+                    if let phoneNumber = view.annotation.subtitle {
+                        if phoneNumber == nil {
+                            return
+                        }
+                        let regex = Regex(stringLiteral: "^[0-9]+$")
+                        let numberToCall = phoneNumber.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "+( )-"))
+                        if !numberToCall.isEmpty && numberToCall.match(regex) {
+                            let application = UIApplication.sharedApplication()
+                            let url = NSURL(string: "tel://\(numberToCall)")
+                            application.openURL(url!)
+                        }
                     }
                 }
-            }
+            }))
+            alertView.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            presentViewController(alertView, animated: true, completion: nil)
+            selectedAnnotation = view.annotation as? CustomPointAnnotation
         }
     }
 
@@ -138,16 +161,14 @@ class TodaysLunchViewController: UIViewController, MKMapViewDelegate {
             let pfobjects = objects as! [PFObject]
             for object in pfobjects {
                 let place = object[self.placeColumnKey] as! String
-                if place == self.textForLunchLabel {
+                if place == self.placeName {
                     var voteCount = object[self.voteColumnKey] as! Int
                     voteCount++
                     object[self.voteColumnKey] = voteCount
                     object.saveInBackground()
-                    self.textForVotesLabel = "\(voteCount)"
-                    self.selectedVotesLabel.text = "Votes: " + self.textForVotesLabel
+                    self.selectedVotesLabel.text = "Votes: \(voteCount)"
                 }
             }
         })
-
     }
 }
