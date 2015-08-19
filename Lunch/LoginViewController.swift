@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
 
     @IBAction func loginNavButtonTapped(sender: UIBarButtonItem) {
         if let username = userNameTextField.text, password = passwordTextField.text {
-            if !checkForErrorsInInput(username, password: password) {
+            if !hasErrorsInInput(username, password: password) {
                 PFUser.logInWithUsernameInBackground(username, password: password, block: { (user: PFUser?, error:NSError?) in
                     if user != nil && error == nil {
                         self.performSegueWithIdentifier(self.loginIdentifier, sender: self)
@@ -56,16 +56,14 @@ class LoginViewController: UIViewController {
         }
     }
 
-    func checkForErrorsInInput(username: String, password: String) -> Bool {
+    func hasErrorsInInput(username: String, password: String) -> Bool {
         var hasErrors = false
         var alertView = UIAlertController(title: "Error", message: "", preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-        let name = username, psswrd = password
-        if name.isEmpty {
+        if username.isEmpty {
             alertView.message = "No username"
             hasErrors = true
-        }
-        if psswrd.isEmpty {
+        } else if password.isEmpty {
             alertView.message = "No password"
             hasErrors = true
         }
