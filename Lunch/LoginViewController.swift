@@ -31,14 +31,16 @@ class LoginViewController: UIViewController {
 
     @IBAction func loginNavButtonTapped(sender: UIBarButtonItem) {
         if let username = userNameTextField.text, password = passwordTextField.text {
-            PFUser.logInWithUsernameInBackground(username, password: password, block: { (user: PFUser?, error:NSError?) in
-                if user != nil && error == nil {
-                    self.performSegueWithIdentifier(self.loginIdentifier, sender: self)
-                } else {
-                    let alertView = UIAlertController(title: "Error", message: "Login Failed.\nWhoops!", preferredStyle: UIAlertControllerStyle.Alert)
-                    self.presentViewController(alertView, animated: true, completion: nil)
-                }
-            })
+            if !hasErrorsInInput(username, password: password) {
+                PFUser.logInWithUsernameInBackground(username, password: password, block: { (user: PFUser?, error:NSError?) in
+                    if user != nil && error == nil {
+                        self.performSegueWithIdentifier(self.loginIdentifier, sender: self)
+                    } else {
+                        let alertView = UIAlertController(title: "Error", message: "Login Failed.\nWhoops!", preferredStyle: UIAlertControllerStyle.Alert)
+                        self.presentViewController(alertView, animated: true, completion: nil)
+                    }
+                })
+            }
         }
 
     }
@@ -52,5 +54,22 @@ class LoginViewController: UIViewController {
             let lunchTableViewController = segue.destinationViewController as! LunchPFTableViewController
             lunchTableViewController.loadObjects()
         }
+    }
+
+    func hasErrorsInInput(username: String, password: String) -> Bool {
+        var hasErrors = false
+        var alertView = UIAlertController(title: "Error", message: "", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+        if username.isEmpty {
+            alertView.message = "No username"
+            hasErrors = true
+        } else if password.isEmpty {
+            alertView.message = "No password"
+            hasErrors = true
+        }
+        if hasErrors {
+            self.presentViewController(alertView, animated: true, completion: nil)
+        }
+        return hasErrors
     }
 }
